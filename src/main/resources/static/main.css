@@ -1,0 +1,75 @@
+nav {
+    margin-top: 30px;
+}
+
+.navbar .nav-link {
+    color: black;
+}
+
+.scrollable-box-list {
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+.scrollable-box-search {
+    max-height: 220px;
+    overflow-y: scroll;
+}
+
+.kakao-button {
+    display: inline-block;
+    background-color: #FEE500;
+    color: #000;
+    border-radius: 30px;
+    border: 2px solid #3C1E1E;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.kakao-button:hover {
+    background-color: #FEE500;
+    color: #000;
+}
+
+.consulting-hours {
+    display: block;
+    font-size: 0.8em;
+    color: #000;
+}
+
+.fs-4 {
+    color: rgb(27, 177, 197);
+    text-shadow: 1px 1px 1px #000;
+}
+
+body {
+    background: #F1F4FD;
+}
+
+.trip_plan_button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+}
+
+.trip_plan_list {
+    margin-top: 10px;
+}
+
+.scrollable-box-list {
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+.scrollable-box-search {
+    max-height: 220px;
+    overflow-y: scroll;
+}
+
+.custom-list-group {
+    font-size: 30px;
+}
+
+.community-content {
+    margin: 5px;
+}

@@ -50,18 +50,37 @@ public class MainController {
 
     @GetMapping({ "/admin" }) // 관리자 접속하는 곳
     public ModelAndView admin(ModelAndView modelAndView) {
-        String viewName = "/WEB-INF/views/admin.jsp";
+        String viewName = "/WEB-INF/sample/views/admin.jsp";
         modelAndView.setViewName(viewName);
         return modelAndView;
     }
 
     @GetMapping({ "/manager/read" }) // 관리자 접속하는 곳
     public ModelAndView manager(ModelAndView modelAndView) {
-        String viewName = "/WEB-INF/views/manager/read.jsp";
+        String viewName = "/WEB-INF/sample/views/manager/read.jsp";
         modelAndView.setViewName(viewName);
         return modelAndView;
     }
 
+    @GetMapping({"/mypageMain"})   
+    public ModelAndView mypage(ModelAndView modelAndView){
+        String viewName = "/WEB-INF/views/mypage/mypageMain.jsp";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
 
+    @GetMapping({"/one_on_one_CS_main"})   
+    public ModelAndView CS_main(ModelAndView modelAndView){
+        String viewName = "/WEB-INF/views/consult/one_on_one_CS_main.jsp";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
+
+    @GetMapping({"/one_on_one_CS_write"})   
+    public ModelAndView CS_write(ModelAndView modelAndView){
+        String viewName = "/WEB-INF/views/consult/one_on_one_CS_write.jsp";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
     
 }

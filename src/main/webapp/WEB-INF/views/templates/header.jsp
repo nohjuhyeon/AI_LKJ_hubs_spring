@@ -14,8 +14,9 @@
                     <span class="fs-4"><strong>PathFinder</strong></span>
                 </a>
                 <ul class="nav nav-pills">
-                    <li class="nav-item"><a href="/login" class="nav-link">로그인/로그아웃</a></li>
-                    <li class="nav-item"><a href="/mypage/" class="nav-link">마이페이지</a></li>
+                    <li class="nav-item"><a href="/loginForm" class="nav-link">로그인</a></li>
+                    <li class="nav-item"><a href="/logoutForm" class="nav-link">로그아웃</a></li>
+                    <li class="nav-item"><a href="/mypageMain" class="nav-link">마이페이지</a></li>
                     <li class="nav-item"><a href="/admin/admin_login" class="nav-link">관리자</a></li>
                 </ul>
             </header>
@@ -70,7 +71,7 @@
                         <a class="dropdown-item" href="/consult/frequent_CS">자주 묻는 질문</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="/consult/one_on_one_CS_main">1:1 문의</a>
+                        <a class="dropdown-item" href="/one_on_one_CS_main">1:1 문의</a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="/consult/data_chart">데이터 현황 차트</a>

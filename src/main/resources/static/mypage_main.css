@@ -1,0 +1,23 @@
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+
+.link-dark {
+    font-size: 15px;
+    /* 원하는 글씨 크기로 조절 */
+}
+
+.card-body {
+    font-size: 20px;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
