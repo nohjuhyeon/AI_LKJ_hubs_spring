@@ -48,12 +48,12 @@ public class MainController {
         return modelAndView;
     }
 
-    @GetMapping({ "/admin" }) // 관리자 접속하는 곳
-    public ModelAndView admin(ModelAndView modelAndView) {
-        String viewName = "/WEB-INF/sample/views/admin.jsp";
-        modelAndView.setViewName(viewName);
-        return modelAndView;
-    }
+    // @GetMapping({ "/admin" }) // 관리자 접속하는 곳
+    // public ModelAndView admin(ModelAndView modelAndView) {
+    //     String viewName = "/WEB-INF/sample/views/admin.jsp";
+    //     modelAndView.setViewName(viewName);
+    //     return modelAndView;
+    // }
 
     @GetMapping({ "/manager/read" }) // 관리자 접속하는 곳
     public ModelAndView manager(ModelAndView modelAndView) {
@@ -69,6 +69,49 @@ public class MainController {
         return modelAndView;
     }
 
+    @GetMapping({"/mypageInfo"})   
+    public ModelAndView mypage_info(ModelAndView modelAndView){
+        String viewName = "/WEB-INF/views/mypage/mypageInfo.jsp";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
+
+    @GetMapping({"/mypageInsert_plan"})   
+    public ModelAndView mypage_insert_plan(ModelAndView modelAndView){
+        String viewName = "/WEB-INF/views/mypage/mypage_insert_plan.jsp";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
+
+    @GetMapping({"/mypageReview"})   
+    public ModelAndView mypage_review(ModelAndView modelAndView){
+        String viewName = "/WEB-INF/views/mypage/mypage_plan_review.jsp";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
+
+    @GetMapping({"/mypagePlan_list"})   
+    public ModelAndView mypage_plan_list(ModelAndView modelAndView){
+        String viewName = "/WEB-INF/views/mypage/mypage_plan_list.jsp";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
+
+    @GetMapping({"/mypageReserve_list"})   
+    public ModelAndView mypage_reserve_list(ModelAndView modelAndView){
+        String viewName = "/WEB-INF/views/mypage/mypage_reserve_list.jsp";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
+
+
+    @GetMapping({"/community"})   
+    public ModelAndView community(ModelAndView modelAndView){
+        String viewName = "/WEB-INF/views/community/community.jsp";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
+
     @GetMapping({"/one_on_one_CS_main"})   
     public ModelAndView CS_main(ModelAndView modelAndView){
         String viewName = "/WEB-INF/views/consult/one_on_one_CS_main.jsp";
@@ -79,6 +122,20 @@ public class MainController {
     @GetMapping({"/one_on_one_CS_write"})   
     public ModelAndView CS_write(ModelAndView modelAndView){
         String viewName = "/WEB-INF/views/consult/one_on_one_CS_write.jsp";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
+
+    @GetMapping({"/admin_main"})   
+    public ModelAndView admin_main(ModelAndView modelAndView){
+        String viewName = "/WEB-INF/views/admin/admin_main.jsp";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
+
+    @GetMapping({"/admin_users"})   
+    public ModelAndView admin_users(ModelAndView modelAndView){
+        String viewName = "/WEB-INF/views/admin/admin_users.jsp";
         modelAndView.setViewName(viewName);
         return modelAndView;
     }

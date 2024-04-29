@@ -46,7 +46,7 @@
                                         </button>
                                         <div class="collapse hidden" id="home-collapse">
                                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                                <li><a href="/mypage/info/" class="link-dark rounded">개인정보 수정</a></li>
+                                                <li><a href="/mypageInfo" class="link-dark rounded">개인정보 수정</a></li>
                                                 <li><a href="#" class="link-dark rounded">SNS 연결 설정</a></li>
                                                 <li><a href="#" class="link-dark rounded">회원탈퇴</a></li>
                                             </ul>
@@ -74,13 +74,13 @@
                                         <div class="collapse hidden" id="orders-collapse">
                                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                                 <li><a href="#" class="link-dark rounded">나의 여행기</a></li>
-                                                <li><a href="/mypage/insert_plan" class="link-dark rounded">여행계획 관리</a>
+                                                <li><a href="/mypageInsert_plan" class="link-dark rounded">여행계획 관리</a>
                                                 </li>
-                                                <li><a href="/mypage/plan_review" class="link-dark rounded">여행 후기 관리</a>
+                                                <li><a href="/mypageReview" class="link-dark rounded">여행 후기 관리</a>
                                                 </li>
-                                                <li><a href="/mypage/plan_list" class="link-dark rounded">내가 찜한 여행기</a>
+                                                <li><a href="/mypagePlan_list" class="link-dark rounded">내가 찜한 여행기</a>
                                                 </li>
-                                                <li><a href="/mypage/reserve_list" class="link-dark rounded">예약 내역</a>
+                                                <li><a href="/mypageReserve_list" class="link-dark rounded">예약 내역</a>
                                                 </li>
                                             </ul>
                                         </div>

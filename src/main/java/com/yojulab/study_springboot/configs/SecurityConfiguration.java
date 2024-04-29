@@ -23,10 +23,10 @@ public class SecurityConfiguration {
                 // 권한에 대한 부분 : url & roles : user url & roles
                 // url, roles from Dao
                 httpSecurity.authorizeHttpRequests() // 로그인
-                        .requestMatchers("/manager*").hasAnyRole("ADMIN", "MANAGER")
-                        .requestMatchers("/admin*").hasRole("ADMIN")
-                        .requestMatchers("/carInfor/map/selectSearch").authenticated()
-                        .requestMatchers("/carInfor/map/*").hasRole("USER")
+                        // .requestMatchers("/manager*").hasAnyRole("ADMIN", "MANAGER")
+                        // .requestMatchers("/admin*").hasRole("ADMIN")
+                        // .requestMatchers("/carInfor/map/selectSearch").authenticated()
+                        // .requestMatchers("/carInfor/map/*").hasRole("USER")
                         .anyRequest().permitAll()
                 ;
                 httpSecurity.formLogin(login -> login.loginPage("/loginForm")

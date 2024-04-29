@@ -16,8 +16,8 @@
                 <ul class="nav nav-pills">
                     <li class="nav-item"><a href="/loginForm" class="nav-link">로그인</a></li>
                     <li class="nav-item"><a href="/logoutForm" class="nav-link">로그아웃</a></li>
-                    <li class="nav-item"><a href="/mypageMain" class="nav-link">마이페이지</a></li>
-                    <li class="nav-item"><a href="/admin/admin_login" class="nav-link">관리자</a></li>
+                    <li class="nav-item"><a href="/mypageMain" class="nav-link">마이페이지</a></li>  
+                    <li class="nav-item"><a href="/admin_main" class="nav-link">관리자</a></li>
                 </ul>
             </header>
         </div>
