@@ -49,7 +49,7 @@
                     <div>
                         <button class="col-md-3 themed-grid-col btn btn-light" style="font-size: 15px">ID/PW 찾기</button>
                         <button class="col-md-3 themed-grid-col btn btn-light" style="font-size: 15px" formaction="/joinForm"
-                            method="GET">회원가입</button>
+                            method="GET">회원가입 우리 팀에 경하가 있어서 다행이에요 \^o^/</button>
                     </div>
                 </div>
                 <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>
