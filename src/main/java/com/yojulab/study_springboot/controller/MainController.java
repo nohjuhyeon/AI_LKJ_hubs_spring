@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class MainController {
@@ -59,4 +61,7 @@ public class MainController {
         modelAndView.setViewName(viewName);
         return modelAndView;
     }
+
+
+    
 }

@@ -1,19 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<sec:authentication property="principal" var="userDetailsBean" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PathFinder</title>
-    <!-- Latest compiled and minified CSS -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="..\css\commons.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
+<div class="container">
+    <div class="row justify-content">
+        <div class="container">
+            <header class="d-flex flex-wrap justify-content-center py-3 border-bottom">
+                <a href="/"
+                    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                    <span class="fs-4"><strong>PathFinder</strong></span>
+                </a>
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="/login" class="nav-link">로그인/로그아웃</a></li>
+                    <li class="nav-item"><a href="/mypage/" class="nav-link">마이페이지</a></li>
+                    <li class="nav-item"><a href="/admin/admin_login" class="nav-link">관리자</a></li>
+                </ul>
+            </header>
+        </div>
+    </div>
+    <nav class="container" id="template_nav">
+        <ul class="nav nav-pills nav-justified navbar navbar-expand-sm bg-light">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">여행정보</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="/plan_trip/reserve_transfer">교통편</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/plan_trip/reserve_dorm">숙소</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/plan_trip/reserve_tour">투어/티켓</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/plan_trip/reco_trip_plan">여행 테마</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/plan_trip/trip_plan">여행 계획 짜기</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/community">여행기</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">이벤트</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="/event/best_region">월별 추천 여행지</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/event/recommend_region">관광지 추천</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">고객센터</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="/consult/user_notice">공지사항</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/consult/frequent_CS">자주 묻는 질문</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/consult/one_on_one_CS_main">1:1 문의</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/consult/data_chart">데이터 현황 차트</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
