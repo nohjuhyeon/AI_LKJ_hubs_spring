@@ -28,10 +28,12 @@ public class UsersController {
     }
 
     @RequestMapping(value = "/joinProc", method = RequestMethod.POST)
-    public ModelAndView joinProc(@RequestParam Map params, ModelAndView modelAndView){
+    public ModelAndView join(@RequestParam Map<String, String> params, ModelAndView modelAndView){
         Object result = usersService.insertWithAuths(params);
-        String viewName = "/WEB-INF/views/main.jsp";
+        String viewName = "/WEB-INF/views/loginForm.jsp";
         modelAndView.setViewName(viewName);
+        // modelAndView.setViewName("redirect:/loginForm");
+        // modelAndView.addObject("message", "회원가입이 완료되었습니다.");
         return modelAndView;
     }
 

@@ -23,14 +23,14 @@ public class UsersService {
     @Autowired
     AuthsService AUTHSService;
 
-        @Autowired
+    @Autowired
     BCryptPasswordEncoder bcryptPasswordEncoder;
     
     public Object insert(Map dataMap) {
-        String password = (String)dataMap.get("password");
-        dataMap.put("password", bcryptPasswordEncoder.encode(password));
+        String password = (String)dataMap.get("USER_PWD");
+        dataMap.put("USER_PWD",bcryptPasswordEncoder.encode(password));
 
-        String sqlMapId = "Users.insert";
+        String sqlMapId = "USERS_JOIN.insert";
         Object result = sharedDao.insert(sqlMapId, dataMap);
         return result;
     }
@@ -41,8 +41,9 @@ public class UsersService {
         return result;
     }
 
+
     public Object selectByUID(Map dataMap) {
-        String sqlMapId = "Users.selectByUID";
+        String sqlMapId = "USERS_JOIN.selectByUID";
 
         Object result = sharedDao.getOne(sqlMapId, dataMap);
         return result;

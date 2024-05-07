@@ -1,0 +1,149 @@
+.joinForm {
+    width: 500px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    /* 수평 가운데 정렬 */
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.joinForm h2 {
+    text-align: center;
+    margin: 30px;
+}
+
+.textForm {
+    border-bottom: 2px solid #adadad;
+    margin: 30px;
+    padding: 10px 10px;
+}
+
+
+.id {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #636e72;
+    font-size: 16px;
+    height: 25px;
+    background: none;
+}
+
+.pw {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #636e72;
+    font-size: 16px;
+    height: 25px;
+    background: none;
+}
+
+.name {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #636e72;
+    font-size: 16px;
+    height: 25px;
+    background: none;
+}
+
+.email {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #636e72;
+    font-size: 16px;
+    height: 25px;
+    background: none;
+}
+
+.address {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #636e72;
+    font-size: 16px;
+    height: 25px;
+    background: none;
+}
+
+.birthdate {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #636e72;
+    font-size: 16px;
+    height: 25px;
+    background: none;
+}
+
+.genderSelect {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    color: #636e72;
+}
+
+.phone {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #3a3c3d;
+    font-size: 16px;
+    height: 25px;
+    background: none;
+}
+
+.btn {
+    position: relative;
+    /* left: 25%;
+    transform: translateX(-50%); */
+    margin-bottom: 40px;
+    width: 80%;
+    height: 40px;
+    background: linear-gradient(125deg, #81ecec, #6c5ce7, #81ecec);
+    background-position: left;
+    background-size: 200%;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s;
+    display: inline;
+    display: block;
+    /* 가운데 정렬을 위해 블록 요소로 변경 */
+    margin: 0 auto;
+    /* 수평 가운데 정렬 */
+}
+
+.btn:hover {
+    background-position: right;
+}
+
+
+/* 라디오 버튼의 라벨 스타일 */
+.textForm label {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    margin-right: 10px;
+    text-align: center; /* 가운데 정렬 */
+}
+
+.textForm input[type="radio"]:checked+label {
+    background-color: #81ecec;
+    color: white;
+}
+
+
+
