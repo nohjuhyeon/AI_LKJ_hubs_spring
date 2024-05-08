@@ -26,7 +26,7 @@ public class AuthsService {
         List<String> authList = new ArrayList<>();
         if (!"ROLE_MEMBER".equals((String) dataMap.get("auth"))){
             authList.add("ROLE_MEMBER");  // default auth
-        }
+        } // 선택한 권한이 없는 경우에는 기본적으로 회원 권한으로 설정 
         authList.add((String) dataMap.get("auth"));  // choosed auth
         dataMap.put("authList", authList);
 

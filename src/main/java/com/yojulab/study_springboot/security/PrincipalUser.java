@@ -27,7 +27,7 @@ public class PrincipalUser implements UserDetails {
         Collection<GrantedAuthority> collections = new ArrayList<>();
         List<Map<String, Object>> resultList = (List) userInfo.get("resultList");
         for(Map item: resultList){
-            collections.add(new SimpleGrantedAuthority((String) item.get("UNIQUE_ID")));
+            collections.add(new SimpleGrantedAuthority((String) item.get("USER_ID")));
         }
         return collections;
     }
@@ -35,13 +35,13 @@ public class PrincipalUser implements UserDetails {
     @Override
     public String getPassword() {
         // password
-        return (String) userInfo.get("PASSWORD");
+        return (String) userInfo.get("USER_PWD");
     }
 
     @Override
     public String getUsername() {
         // ID
-        return (String) userInfo.get("UNIQUE_ID");
+        return (String) userInfo.get("USER_ID");
     }
 
     @Override

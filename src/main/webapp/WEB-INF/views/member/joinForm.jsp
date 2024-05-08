@@ -46,11 +46,10 @@
                             <input name="USER_BIRTH" type="date" class="birthdate" placeholder="생년월일">
                         </div>
                         <div class="textForm">
-                            <select name="PK_GENDER" class="genderSelect">
+                            <select name="GENDER" class="genderSelect">
                                 <option value="" disabled selected>성별</option>
-                                <option value="male">남성</option>
-                                <option value="female">여성</option>
-                                <option value="other">기타</option>
+                                <option value="GENDER_01">남성</option>
+                                <option value="GENDER_02">여성</option>
                             </select>
                         </div>
                         <div class="textForm">
@@ -60,9 +59,9 @@
                             <input name="USER_ADDRESS" type="text" class="address" placeholder="주소">
                         </div>
                         <div class="textForm">
-                            <input type="radio" id="member" name="USER_PERMISSION" value="ROLE_MEMBER">
+                            <input type="radio" id="member" name="USER_AUTH" value="ROLE_MEMBER">
                             <label for="member">회원</label>
-                            <input type="radio" id="admin" name="USER_PERMISSION" value="ROLE_ADMIN">
+                            <input type="radio" id="admin" name="USER_AUTH" value="ROLE_ADMIN">
                             <label for="admin">관리자</label>
                         </div>
                         <div class="row">

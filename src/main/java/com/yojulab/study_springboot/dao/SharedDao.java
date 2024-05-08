@@ -27,7 +27,7 @@ public class SharedDao {
         return result;
     }
     
-    // 만듬
+    // 만듦
     public Object insert(String sqlMapId, Object dataMap){
         Object result = sqlSessionTemplate.insert(sqlMapId, dataMap);
         return result;

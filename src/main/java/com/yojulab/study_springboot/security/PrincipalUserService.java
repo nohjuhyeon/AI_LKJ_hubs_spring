@@ -21,11 +21,11 @@ public class PrincipalUserService implements UserDetailsService {
 
     @Override
     // url /login 일때 spring scrutiry가 호출
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String USER_ID) throws UsernameNotFoundException {
         // query select with ID
         Map dataMap = new HashMap<>();
-        dataMap.put("USERNAME", username);
-        Object usernameObj = username;
+        dataMap.put("USER_ID", USER_ID);
+        Object usernameObj = USER_ID;
         Map resultMap = (Map) usersService.selectByUIDWithAuths(dataMap);
 
         // session 등록

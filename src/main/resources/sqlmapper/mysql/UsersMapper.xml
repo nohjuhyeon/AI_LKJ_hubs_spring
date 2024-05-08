@@ -3,17 +3,16 @@
 <mapper namespace="Users">
 	<select id="selectByUID" parameterType="Map" resultType="Map">
         SELECT * 
-        FROM USERS
-        where USER_ID = #{USERNAME}
+        FROM USERS_JOIN
+        where USER_ID = #{USER_ID}
 	</select>
 
     <!-- 입력 -->
         <insert id="insert" parameterType="Map">
-        insert into USERS
-        (USER_ID, PK_GENDER, USER_PWD, CHECK_PWD, USER_NAME, USER_EMAIL, USER_BIRTH, USER_PHONE, USER_ADDRESS, USER_PERMISSION)
+        insert into USERS_JOIN
+        (USER_ID, PK_GENDER, USER_PWD, CHECK_PWD, USER_NAME, USER_EMAIL, USER_BIRTH, USER_PHONE, USER_ADDRESS, USER_AUTH)
         values
-        (#{USERNAME}, #{GENDER}, #{USER_PWD}, #{CHECK_PWD}, #{USER_NAME}, #{USER_EMAIL}, #{USER_BIRTH}, #{USER_PHONE}, #{USER_ADDRESS}, #{USER_PERMISSION})
-        ;
+        (#{USER_ID}, #{GENDER}, #{USER_PWD}, #{CHECK_PWD}, #{USER_NAME}, #{USER_EMAIL}, #{USER_BIRTH}, #{USER_PHONE}, #{USER_ADDRESS}, #{USER_AUTH});
         </insert>
 
 </mapper>

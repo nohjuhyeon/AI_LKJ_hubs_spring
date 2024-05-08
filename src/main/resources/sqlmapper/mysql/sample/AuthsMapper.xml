@@ -3,20 +3,23 @@
 <mapper namespace="Auths">
         <select id="selectWithUSERNAME" parameterType="Map" resultType="Map">
         SELECT AUTH_NAMES.AUTH_NAME, AUTH_NAMES.UNIQUE_ID
-        FROM USER_AUTH
+        FROM AUTHS
                 inner JOIN AUTH_NAMES
-        ON USER_AUTH.UNIQUE_ID = AUTH_NAMES.UNIQUE_ID
-        AND USER_AUTH.USER_ID = #{USER_ID}
+        ON AUTHS.UNIQUE_ID_AUTH_NAMES = AUTH_NAMES.UNIQUE_ID
+        AND AUTHS.UNIQUE_ID_USERS = #{USERNAME}
         ;
         </select>
 
         <!-- 입력 -->
         <insert id="insert" parameterType="Map">
-        insert into USER_AUTH 
-        (UNIQUE_ID, USER_ID)
+        insert into AUTHS 
+        (UNIQUE_ID_USERS,UNIQUE_ID_AUTH_NAMES)
         values
-        (#{UNIQUE_ID},#{USER_ID})      
+        <foreach item="auth" collection="authList"
+            separator="," nullable="true">
+        (#{USERNAME},#{auth})
+        </foreach>        
         ;
-        </insert>
+    </insert>
 
 </mapper>
