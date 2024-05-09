@@ -17,6 +17,22 @@
             <link rel="stylesheet" href="/joinForm.css">
 
             <title>joinForm</title>
+
+            <script>
+                $(document).ready(function () {
+                    var errorMessage = "${errorMessage}";
+                    var successMessage = "${successMessage}";
+
+                console.log("errorMessage:", errorMessage);
+                console.log("successMessage:", successMessage);
+
+                    if (errorMessage) {
+                        alert(errorMessage);
+                    } else if (successMessage) {
+                        alert(successMessage);
+                    }
+                });
+            </script>
         </head>
 
         <body>

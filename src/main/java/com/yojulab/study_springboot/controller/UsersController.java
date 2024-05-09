@@ -33,7 +33,7 @@ public class UsersController {
         // 아이디 중복 체크
         String userID = params.get("USER_ID");
         if (usersService.isUserIdExists(userID)) {
-            modelAndView.addObject("error", "아이디가 이미 존재합니다.");
+            modelAndView.addObject("errorMessage", "아이디가 이미 존재합니다.");
             modelAndView.setViewName("/WEB-INF/views/member/joinForm.jsp");
             return modelAndView;
         }
@@ -42,7 +42,7 @@ public class UsersController {
         String password = params.get("USER_PWD");
         String checkPassword = params.get("CHECK_PWD");
         if (!password.equals(checkPassword)) {
-            modelAndView.addObject("error", "비밀번호가 일치하지 않습니다.");
+            modelAndView.addObject("errorMessage", "비밀번호가 일치하지 않습니다.");
             modelAndView.setViewName("/WEB-INF/views/member/joinForm.jsp");
             return modelAndView;
         }
@@ -50,11 +50,11 @@ public class UsersController {
         // 회원가입 처리
         Object result = usersService.insertWithAuths(params);
         if (result != null) {
-            modelAndView.addObject("success", "회원가입이 완료되었습니다.");
+            modelAndView.addObject("successMessage", "회원가입이 완료되었습니다.");
             String viewName = "/WEB-INF/views/security/loginForm.jsp";
             modelAndView.setViewName(viewName);
         } else {
-            modelAndView.addObject("error", "회원가입에 실패하였습니다.");
+            modelAndView.addObject("errorMessage", "회원가입에 실패하였습니다.");
             modelAndView.setViewName("/WEB-INF/views/member/joinForm.jsp");
         }
 

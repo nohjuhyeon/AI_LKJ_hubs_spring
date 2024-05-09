@@ -11,9 +11,9 @@
                     <svg class="bi me-2" width="40" height="32">
                         <use xlink:href="#bootstrap"></use>
                     </svg>
-                    <span class="fs-4"><strong>PathFinder</strong></span>
+                    <img src="/images/pathfinderLOGO.png" alt="로고" width="200" height="80">
                 </a>
-                <ul class="nav nav-pills">
+                <ul class="nav nav-pills mt-4">
                     <li class="nav-item"><a href="/loginForm" class="nav-link">로그인</a></li>
                     <li class="nav-item"><a href="/logoutForm" class="nav-link">로그아웃</a></li>
                     <li class="nav-item"><a href="/mypageMain" class="nav-link">마이페이지</a></li>  
