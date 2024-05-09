@@ -57,6 +57,13 @@ public class UsersService {
         return result;
     }
 
+    // 아이디가 이미 존재하는지 확인하는 로직
+    public boolean isUserIdExists(String userId) {
+        // SharedDao 클래스의 isUserIdExists 메서드 호출하여 아이디가 이미 존재하는지 확인
+        boolean result = sharedDao.isUserIdExists(userId);
+        return result;
+    }
+
     public Object selectByUID(Map dataMap) {
         String sqlMapId = "Users.selectByUID";
 
