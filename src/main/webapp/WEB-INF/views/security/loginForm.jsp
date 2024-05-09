@@ -33,7 +33,7 @@
                 </div>
                 <div class="mb-3 row">
                     <div class="col-md-6">
-                        <button class="btn btn-primary btn-block" type="submit">로그인</button>
+                        <button class="btn btn-primary btn-block" formaction="/login" formmethod="post" type="submit">로그인</button>
                     </div>
                     <div class="col-md-6">
                         <button class="btn btn-light btn-block" type="button">비밀번호 찾기</button>
