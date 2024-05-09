@@ -4,7 +4,7 @@
         <footer class="row row-cols-md-5 py-5 my-5  mb-auto mt-auto border-top justify-content-between">
             <a href="/"
                 class="col-md-2 d-flex align-items-center mb-md-0 link-body-emphasis text-decoration-none">
-                <img src="/images/pathfinderLOGO.png" alt="로고" width="150" height="80">
+                <img src="/images/pathfinderLOGO.png" alt="로고" width="150" height="70">
             </a>
             <div class="col-md-8 mt-auto mb-auto d-flex justify-content-center">
                 <div class="">

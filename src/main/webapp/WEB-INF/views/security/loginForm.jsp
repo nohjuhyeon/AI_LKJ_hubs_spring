@@ -22,14 +22,14 @@
 
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <form class="myForm">
+            <form class="myForm" action="/login" method="post">
                 <img src="/images/pathfinderLOGO.png" alt="로고" width="200" height="100">
                 <h1 class="h3 mb-3 fw-normal text-center">로그인</h1>
                 <div class="mb-3">
-                    <input type="email" class="form-control" id="input_email" placeholder="이메일" name="login_email">
+                    <input type="text" class="form-control" id="input_email" placeholder="아이디" name="USER_ID">
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control" id="input_password" placeholder="비밀번호" name="login_password">
+                    <input type="password" class="form-control" id="input_password" placeholder="비밀번호" name="USER_PWD">
                 </div>
                 <div class="mb-3 row">
                     <div class="col-md-6">
