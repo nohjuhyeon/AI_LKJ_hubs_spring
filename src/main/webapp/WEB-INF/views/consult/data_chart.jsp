@@ -46,8 +46,25 @@
     <script>
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawCharts);
+    
         function drawCharts() {
-            // 다양한 차트의 데이터와 옵션 설정, 그리고 차트 그리기
+            var dataConsume = JSON.parse('${dataConsume}'); // 서버로부터 전달된 JSON 문자열을 파싱
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Category');
+            data.addColumn('number', 'Value');
+    
+            dataConsume.forEach(function (item) {
+                data.addRow([item.name, item.value]);
+            });
+    
+            var options = {
+                title: '소비 데이터 차트',
+                width: 400,
+                height: 300
+            };
+    
+            var chart = new google.visualization.BarChart(document.getElementById('consume_chart'));
+            chart.draw(data, options);
         }
     </script>
 

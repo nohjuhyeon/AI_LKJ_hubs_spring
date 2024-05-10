@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.yojulab.study_springboot.service.ApiService;
 
 @Controller
 @RequestMapping("/consult")
 public class ConsultController {
     @Autowired
     private Gson gson;
+    @Autowired
+    private ApiService apiService;
 
     //http://127.0.0.1:8080/charts/statistics
     @RequestMapping(value = { "/statistics" }, method = RequestMethod.GET)
@@ -41,6 +44,10 @@ public class ConsultController {
 
     @GetMapping("/data_chart")
     public ModelAndView showDataChart(ModelAndView modelAndView) {
+        modelAndView.addObject("dataConsume", apiService.fetchDataConsume());
+        // modelAndView.addObject("dataTrendSearch", apiService.fetchDataTrendSearch());
+        // modelAndView.addObject("dataConsumeTransition", apiService.fetchDataConsumeTransition());
+        // modelAndView.addObject("dataConceptSearch", apiService.fetchDataConceptSearch());
         modelAndView.setViewName("/WEB-INF/views/consult/data_chart.jsp");
         return modelAndView;
     }
