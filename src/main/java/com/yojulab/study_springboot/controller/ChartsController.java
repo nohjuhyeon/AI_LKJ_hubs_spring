@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,12 +35,6 @@ public class ChartsController {
         modelAndView.addObject("barDataJson", gson.toJson(barData));
         String viewName = "/WEB-INF/views/charts/charts_google_various.jsp";
         modelAndView.setViewName(viewName);
-        return modelAndView;
-    }
-
-    @GetMapping("/consult/data_chart")
-    public ModelAndView showDataChart(ModelAndView modelAndView) {
-        modelAndView.setViewName("/WEB-INF/views/consult/data_chart.jsp");
         return modelAndView;
     }
 }
