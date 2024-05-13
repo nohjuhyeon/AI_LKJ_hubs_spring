@@ -15,6 +15,31 @@
     <link rel="stylesheet" href="/main.css">
     <title>logoutForm</title>
 
+    <style>
+
+        .form-signin {
+            background-color: #ffffff;
+            border: 1px solid #ced4da;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .form-signin h2 {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+
 </head>
 <body>
     <!-- Menu -->
@@ -22,7 +47,7 @@
     <div class="container row">
         <div class="col-md-6 mx-auto">
         <form class="form-signin" method="post" action="/logout">
-            <h2 class="form-signin-heading">Are you sure you want to log out?</h2>
+            <h2 class="form-signin-heading">로그아웃 하시겠습니까?</h2>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Log Out</button>
         </form>
         </div>

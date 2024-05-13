@@ -32,7 +32,7 @@
                         <li class="nav-item"><a href="/mypageMain" class="nav-link">마이페이지</a></li>  
                         <li class="nav-item"><a href="/admin_main" class="nav-link">관리자</a></li>
                         <li>
-                            <button class="nav-link" onclick="location.href='/logoutForm'">Logout Form</button>
+                            <button class="nav-link" onclick="location.href='/logoutForm'">Logout</button>
                         </li>
                     </sec:authorize>
                 </ul>
