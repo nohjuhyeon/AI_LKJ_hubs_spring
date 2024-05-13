@@ -162,6 +162,13 @@ public class MainController {
         return modelAndView;
     }
     
+    @GetMapping("/accessDenied")
+    public ModelAndView showAccessDenied(ModelAndView modelAndView) {
+    // 접근 거부 페이지로 이동
+    String viewName = "/WEB-INF/views/auth/accessDenied.jsp";
+    modelAndView.setViewName(viewName);
+    return modelAndView;
+}
 }
 
 

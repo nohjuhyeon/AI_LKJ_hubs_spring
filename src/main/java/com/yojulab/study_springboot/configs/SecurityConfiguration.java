@@ -53,8 +53,15 @@ public class SecurityConfiguration {
                                 .invalidateHttpSession(true)
                                 .deleteCookies("JSESSIONID"));
 
+
+                // 권한 거부 처리
+                httpSecurity.exceptionHandling()
+                        .accessDeniedPage("/accessDenied");
+
                 return httpSecurity.build();
         }
+
+        
 
         @Bean
         public BCryptPasswordEncoder encoderPasswordEncoder() {
