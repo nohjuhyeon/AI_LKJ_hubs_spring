@@ -22,14 +22,29 @@ public class SecurityConfiguration {
                 httpSecurity.csrf().disable();
                 // 권한에 대한 부분 : url & roles : user url & roles
                 // url, roles from Dao
-                httpSecurity.authorizeHttpRequests() // 로그인
+                httpSecurity.authorizeHttpRequests() // 권한 설정
                         // .requestMatchers("/manager*").hasAnyRole("ADMIN", "MANAGER")
                         // .requestMatchers("/admin*").hasRole("ADMIN")
                         // .requestMatchers("/carInfor/map/selectSearch").authenticated()
                         // .requestMatchers("/carInfor/map/*").hasRole("USER")
+
+                        
+                        // .requestMatchers("/admin_main*").hasRole("ADMIN")
+                        // .requestMatchers("/admin_users*").hasRole("ADMIN")
+                        // .requestMatchers("/admin_notices*").hasRole("ADMIN")
+                        // .requestMatchers("/mypageMain*").hasRole("MEMBER")
+                        // .requestMatchers("/mypageInfo*").hasRole("MEMBER")
+                        // .requestMatchers("/mypageInsert_plan*").hasRole("MEMBER")
+                        // .requestMatchers("/mypageReview*").hasRole("MEMBER")
+                        // .requestMatchers("/mypagePlan_list*").hasRole("MEMBER")
+                        // .requestMatchers("/mypageReserve_list*").hasRole("MEMBER")
+                        // .requestMatchers("/one_on_one_CS_write*").hasRole("MEMBER")
                         .anyRequest().permitAll()
                 ;
+
+                // 로그인, 로그아웃
                 httpSecurity.formLogin(login -> login.loginPage("/loginForm")
+                                .usernameParameter("USER_ID") // 이 부분 추가
                                 .failureUrl("/loginForm?fail=true")
                                 .loginProcessingUrl("/login")
                                 .defaultSuccessUrl("/"));
@@ -43,6 +58,7 @@ public class SecurityConfiguration {
 
         @Bean
         public BCryptPasswordEncoder encoderPasswordEncoder() {
+                // BCryptPasswordEncoder를 사용한 인코딩
                 return new BCryptPasswordEncoder();
         }
 }

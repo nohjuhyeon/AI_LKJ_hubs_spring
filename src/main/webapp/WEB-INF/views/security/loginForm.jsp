@@ -29,7 +29,7 @@
                     <input type="text" class="form-control" id="input_email" placeholder="아이디" name="USER_ID">
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control" id="input_password" placeholder="비밀번호" name="USER_PWD">
+                    <input type="password" class="form-control" id="input_password" placeholder="비밀번호" name="password">
                 </div>
                 <div class="mb-3 row">
                     <div class="col-md-6">

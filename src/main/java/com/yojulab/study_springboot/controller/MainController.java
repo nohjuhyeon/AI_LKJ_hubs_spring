@@ -55,12 +55,12 @@ public class MainController {
     //     return modelAndView;
     // }
 
-    @GetMapping({ "/manager/read" }) // 관리자 접속하는 곳
-    public ModelAndView manager(ModelAndView modelAndView) {
-        String viewName = "/WEB-INF/sample/views/manager/read.jsp";
-        modelAndView.setViewName(viewName);
-        return modelAndView;
-    }
+    // @GetMapping({ "/manager/read" }) // 관리자 접속하는 곳
+    // public ModelAndView manager(ModelAndView modelAndView) {
+    //     String viewName = "/WEB-INF/sample/views/manager/read.jsp";
+    //     modelAndView.setViewName(viewName);
+    //     return modelAndView;
+    // }
 
     @GetMapping({"/mypageMain"})   
     public ModelAndView mypage(ModelAndView modelAndView){
@@ -140,6 +140,27 @@ public class MainController {
         return modelAndView;
     }
     
+    
+    @GetMapping({"/admin_notices"})   
+    public ModelAndView admin_notices(ModelAndView modelAndView){
+        String viewName = "/WEB-INF/views/admin/admin_notices.jsp";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
+
+    @GetMapping({"/admin_notice_write"})   
+    public ModelAndView admin_notice_write(ModelAndView modelAndView){
+        String viewName = "/WEB-INF/views/admin/admin_notice_write.jsp";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
+
+    @GetMapping({"/admin_notice_content"})   
+    public ModelAndView admin_notice_content(ModelAndView modelAndView){
+        String viewName = "/WEB-INF/views/admin/admin_notice_content.jsp";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
     
 }
 

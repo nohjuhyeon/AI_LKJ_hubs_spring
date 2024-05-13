@@ -40,10 +40,10 @@ public class UsersService {
     public Object insertWithAuths(Map dataMap) {
         // 회원 또는 관리자 버튼을 누를 때 해당 권한을 authList에 추가
         List<String> authList = new ArrayList<>();
-        if ("ROLE_MEMBER".equals((String) dataMap.get("USER_AUTH"))) {
+        if ("MEMBER".equals((String) dataMap.get("USER_AUTH"))) {
             authList.add("PK_MEMBER"); // PK_MEMBER를 추가
             dataMap.put("UNIQUE_ID", "PK_MEMBER");
-        } else if ("ROLE_ADMIN".equals((String) dataMap.get("USER_AUTH"))) {
+        } else if ("ADMIN".equals((String) dataMap.get("USER_AUTH"))) {
             authList.add("PK_ADMIN"); // PK_ADMIN을 추가
             dataMap.put("UNIQUE_ID", "PK_ADMIN");
         }

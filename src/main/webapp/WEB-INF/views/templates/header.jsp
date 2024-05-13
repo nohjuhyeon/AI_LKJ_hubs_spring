@@ -14,14 +14,27 @@
                     <img src="/images/pathfinderLOGO.png" alt="로고" width="200" height="80">
                 </a>
                 <ul class="nav nav-pills mt-4">
-                    <%
-                    String name = (String)request.getAttribute("USER_NAME");
-                    %>
-                    <li class="nav-item"><a href="/loginForm" class="nav-link">로그인</a></li>
-                    <li class="nav-item"><a href="/logoutForm" class="nav-link">로그아웃</a></li>
-                    <li class="nav-item"><a href="/mypageMain" class="nav-link">마이페이지</a></li>  
-                    <li class="nav-item"><a href="/admin_main" class="nav-link">관리자</a></li>
+                    <!-- 로그인 전 -->
+                    <sec:authorize access="isAnonymous()">
+                        <li class="nav-item"><a href="/loginForm" class="nav-link">로그인</a></li>
+                        <li class="nav-item"><a href="/mypageMain" class="nav-link">마이페이지</a></li>  
+                        <li class="nav-item"><a href="/admin_main" class="nav-link">관리자</a></li>
+                    </sec:authorize>
+                
+                    <!-- 로그인 후 -->
+                    <sec:authorize access="isAuthenticated()">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">User ID : ${userDetailsBean.username}, Name : ${userDetailsBean.memberName}</a>
+                        </li>
+                        <li class="nav-item"><a href="/mypageMain" class="nav-link">마이페이지</a></li>  
+                        <li class="nav-item"><a href="/admin_main" class="nav-link">관리자</a></li>
+                        <li>
+                            <button class="nav-link" onclick="location.href='/logoutForm'">Logout Form</button>
+                        </li>
+                    </sec:authorize>
                 </ul>
+                
+                
             </header>
         </div>
     </div>

@@ -14,7 +14,7 @@ public class PrincipalUser implements UserDetails {
     private Map userInfo;
 
     public String getMemberName() {
-        return (String) userInfo.get("NAME");
+        return (String) userInfo.get("USER_NAME");
     }
 
     public PrincipalUser(Map userInfo) {
@@ -27,8 +27,9 @@ public class PrincipalUser implements UserDetails {
         Collection<GrantedAuthority> collections = new ArrayList<>();
         List<Map<String, Object>> resultList = (List) userInfo.get("resultList");
         for(Map item: resultList){
-            collections.add(new SimpleGrantedAuthority((String) item.get("USER_ID")));
-        }
+            collections.add(new SimpleGrantedAuthority((String) item.get("UNIQUE_ID")));
+        }    // resultList => AUTH_NAMES
+            // 권한을 가져오는 부분이므로 UNIQUE_ID를 가져와야 함
         return collections;
     }
 

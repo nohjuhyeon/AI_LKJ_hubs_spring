@@ -75,9 +75,9 @@
                             <input name="USER_ADDRESS" type="text" class="address" placeholder="주소">
                         </div>
                         <div class="textForm">
-                            <input type="radio" id="member" name="USER_AUTH" value="ROLE_MEMBER">
+                            <input type="radio" id="member" name="USER_AUTH" value="MEMBER">
                             <label for="member">회원</label>
-                            <input type="radio" id="admin" name="USER_AUTH" value="ROLE_ADMIN">
+                            <input type="radio" id="admin" name="USER_AUTH" value="ADMIN">
                             <label for="admin">관리자</label>
                         </div>
                         <div class="row">
