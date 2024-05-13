@@ -27,9 +27,11 @@ public class PrincipalUser implements UserDetails {
         Collection<GrantedAuthority> collections = new ArrayList<>();
         List<Map<String, Object>> resultList = (List) userInfo.get("resultList");
         for(Map item: resultList){
-            collections.add(new SimpleGrantedAuthority((String) item.get("UNIQUE_ID")));
+            String roleName = "ROLE_" + item.get("AUTH_NAME"); // 권한명 앞에 'ROLE_' 접두사 추가
+            collections.add(new SimpleGrantedAuthority(roleName));
         }    // resultList => AUTH_NAMES
-            // 권한을 가져오는 부분이므로 UNIQUE_ID를 가져와야 함
+            // 권한을 가져오는 부분이므로 AUTH_NAME 가져와야 함
+            // 권한 설정 부분때문에 UNIQUE_ID 대신 AUTH_NAME으로 수정
         return collections;
     }
 

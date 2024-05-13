@@ -29,16 +29,16 @@ public class SecurityConfiguration {
                         // .requestMatchers("/carInfor/map/*").hasRole("USER")
 
                         
-                        // .requestMatchers("/admin_main*").hasRole("ADMIN")
-                        // .requestMatchers("/admin_users*").hasRole("ADMIN")
-                        // .requestMatchers("/admin_notices*").hasRole("ADMIN")
-                        // .requestMatchers("/mypageMain*").hasRole("MEMBER")
-                        // .requestMatchers("/mypageInfo*").hasRole("MEMBER")
-                        // .requestMatchers("/mypageInsert_plan*").hasRole("MEMBER")
-                        // .requestMatchers("/mypageReview*").hasRole("MEMBER")
-                        // .requestMatchers("/mypagePlan_list*").hasRole("MEMBER")
-                        // .requestMatchers("/mypageReserve_list*").hasRole("MEMBER")
-                        // .requestMatchers("/one_on_one_CS_write*").hasRole("MEMBER")
+                        .requestMatchers("/admin_main*").hasRole("ADMIN")
+                        .requestMatchers("/admin_users*").hasRole("ADMIN")
+                        .requestMatchers("/admin_notices*").hasRole("ADMIN")
+                        .requestMatchers("/mypageMain*").hasRole("MEMBER")
+                        .requestMatchers("/mypageInfo*").hasRole("MEMBER")
+                        .requestMatchers("/mypageInsert_plan*").hasRole("MEMBER")
+                        .requestMatchers("/mypageReview*").hasRole("MEMBER")
+                        .requestMatchers("/mypagePlan_list*").hasRole("MEMBER")
+                        .requestMatchers("/mypageReserve_list*").hasRole("MEMBER")
+                        .requestMatchers("/one_on_one_CS_write*").hasRole("MEMBER")
                         .anyRequest().permitAll()
                 ;
 

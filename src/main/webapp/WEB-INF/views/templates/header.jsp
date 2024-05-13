@@ -24,7 +24,10 @@
                     <!-- 로그인 후 -->
                     <sec:authorize access="isAuthenticated()">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">User ID : ${userDetailsBean.username}, Name : ${userDetailsBean.memberName}</a>
+                            <a class="nav-link" href="#">User ID : ${userDetailsBean.username}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Name : ${userDetailsBean.memberName}</a>
                         </li>
                         <li class="nav-item"><a href="/mypageMain" class="nav-link">마이페이지</a></li>  
                         <li class="nav-item"><a href="/admin_main" class="nav-link">관리자</a></li>
