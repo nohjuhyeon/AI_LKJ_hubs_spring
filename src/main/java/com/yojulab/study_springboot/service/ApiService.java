@@ -1,4 +1,4 @@
-package com.yojulab.study_springboot.service.sample;
+package com.yojulab.study_springboot.service;
 
 import java.util.Collections;
 import java.util.Map;

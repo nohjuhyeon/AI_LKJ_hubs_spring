@@ -35,10 +35,9 @@
                             <button class="nav-link" onclick="location.href='/logoutForm'">Logout</button>
                         </li>
                     </sec:authorize>
-                </ul>
-                
-                
+                </ul>   
             </header>
+
         </div>
     </div>
     <nav class="container" id="template_nav">
