@@ -52,7 +52,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% int rowNum=1; List<HashMap<String, Object>> InquiryList = (List
+                                        <% int rowNum=1;
+                                            List<HashMap<String, Object>> InquiryList = (List
                                             <HashMap<String, Object>>)
                                                 request.getAttribute("InquiryList");
                                                 if(InquiryList != null && !InquiryList.isEmpty()) {
@@ -100,10 +101,6 @@
                                     <nav class="row justify-content-between" aria-label="Page navigation">
                                         <div class="col-8">Total Count : <%= paginations.getTotalCount() %>
                                         </div>
-                                        <!-- <div class="col-1">
-                                            <button class="btn btn-primary" name="btn_type" value="insert"
-                                                formaction="/q/board/insert">insert</button>
-                                        </div> -->
                                         <ul class="pagination justify-content-center">
                                             <li class="page-item <%= paginations.isFirstPage() ? " disabled" : "" %>">
                                                 <button class="page-link" type="submit" name="currentPage"
