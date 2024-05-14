@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.yojulab.study_springboot.service.sample.ApiService;
+import com.yojulab.study_springboot.service.ApiService;
 
 @Controller
 @RequestMapping("/consult")
