@@ -60,19 +60,6 @@ public class MainController {
         return modelAndView;
     }
 
-    // @GetMapping({ "/admin" }) // 관리자 접속하는 곳
-    // public ModelAndView admin(ModelAndView modelAndView) {
-    //     String viewName = "/WEB-INF/sample/views/admin.jsp";
-    //     modelAndView.setViewName(viewName);
-    //     return modelAndView;
-    // }
-
-    // @GetMapping({ "/manager/read" }) // 관리자 접속하는 곳
-    // public ModelAndView manager(ModelAndView modelAndView) {
-    //     String viewName = "/WEB-INF/sample/views/manager/read.jsp";
-    //     modelAndView.setViewName(viewName);
-    //     return modelAndView;
-    // }
 
     @GetMapping({"/mypageMain"})   
     public ModelAndView mypage(ModelAndView modelAndView){
@@ -126,15 +113,22 @@ public class MainController {
 
     @GetMapping({"/one_on_one_CS_main"})   
     public ModelAndView CS_main(ModelAndView modelAndView, @RequestParam Map<String, Object> dataMap){
-        // InquiryService를 통해 모든 문의 조회
-        List<Map<String, Object>> InquiryList = inquiryService.getAllInquiries(dataMap);
+        // 페이지네이션을 위한 데이터 맵에 현재 페이지 정보 추가
+        if (!dataMap.containsKey("currentPage")) {
+            dataMap.put("currentPage", "1");
+        }
+        
+        // InquiryService를 통해 검색된 결과와 페이지네이션 정보를 가져옴
+        Map<String, Object> InquiryList = inquiryService.selectSearchWithPagination(dataMap);
+        
 
         // View의 경로 설정
         String viewName = "/WEB-INF/views/consult/one_on_one_CS_main.jsp";
         modelAndView.setViewName(viewName);
 
         // View에 전달할 데이터 설정
-        modelAndView.addObject("InquiryList", InquiryList);
+        modelAndView.addObject("InquiryList", InquiryList.get("InquiryList"));
+        modelAndView.addObject("paginations", InquiryList.get("paginations"));
         modelAndView.addObject("dataMap", dataMap);
         return modelAndView;
     }

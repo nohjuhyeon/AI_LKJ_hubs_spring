@@ -26,23 +26,23 @@
             
             <div class="form-group">
                 <label for="name">이름:</label>
-                <input type="text" class="form-control" id="name" name="userName" required>
+                <input type="text" class="form-control" id="name" name="USER_ID" required>
             </div>
             <div class="form-group">
-                <label for="email">이메일:</label>
-                <input type="email" class="form-control" id="email" name="userEmail" required>
-            <div class="form-group">
-                <label for="password">비밀번호(4자리):</label>
-                <input type="password" class="form-control" id="password" name="password" pattern="\d{4}" required>
-            </div>    
+                    <!-- <label for="email">이메일:</label>
+                    <input type="email" class="form-control" id="email" name="userEmail" required> -->
+                <div class="form-group">
+                    <label for="password">비밀번호(4자리):</label>
+                    <input type="password" class="form-control" id="password" name="password" pattern="\d{4}" required>
+                </div>    
             </div>
             <div class="form-group">
                 <label for="title">문의제목:</label>
-                <input type="text" class="form-control" id="title" name="title" required>
+                <input type="text" class="form-control" id="title" name="INQUIRY_TITLE" required>
             </div>
             <div class="form-group">
                 <label for="inquiry">문의내용:</label>
-                <textarea class="form-control" id="inquiry" name="inquiryContent" rows="3" required></textarea>
+                <textarea class="form-control" id="inquiry" name="INQUIRY_CONTENT" rows="3" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">문의하기</button>
         </form>

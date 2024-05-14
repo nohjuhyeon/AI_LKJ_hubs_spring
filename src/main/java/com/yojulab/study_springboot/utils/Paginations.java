@@ -158,5 +158,15 @@ public class Paginations {
         this.blockEnd = blockEnd;
     }
 
+    // isFirstPage() 메소드 추가
+    public boolean isFirstPage() {
+        return currentPage == 1;
+    }
+
+    // isLastPage() 메소드 추가
+    public boolean isLastPage() {
+        int totalPages = (int) Math.ceil((double) totalCount / pageScale);
+        return currentPage == totalPages;
+    }
     
 }
