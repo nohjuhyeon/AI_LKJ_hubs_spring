@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,12 +41,10 @@ public class ConsultController {
         return modelAndView;
     }
 
-    @GetMapping("/data_chart")
+    @RequestMapping(value = "/data_chart", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView showDataChart(ModelAndView modelAndView) {
-        modelAndView.addObject("dataConsume", apiService.fetchDataConsume());
-        // modelAndView.addObject("dataTrendSearch", apiService.fetchDataTrendSearch());
-        // modelAndView.addObject("dataConsumeTransition", apiService.fetchDataConsumeTransition());
-        // modelAndView.addObject("dataConceptSearch", apiService.fetchDataConceptSearch());
+        Map<String, Object> result = apiService.fetchDataConsume();
+        modelAndView.addObject("dataConsume", result);
         modelAndView.setViewName("/WEB-INF/views/consult/data_chart.jsp");
         return modelAndView;
     }
