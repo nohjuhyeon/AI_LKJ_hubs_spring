@@ -1,4 +1,4 @@
-package com.yojulab.study_springboot.controller;
+package com.yojulab.study_springboot.controller.sample;
 
 import java.io.File;
 import java.io.IOException;

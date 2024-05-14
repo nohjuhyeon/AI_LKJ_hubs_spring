@@ -1,4 +1,4 @@
-package com.yojulab.study_springboot.controller;
+package com.yojulab.study_springboot.controller.sample;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.yojulab.study_springboot.service.ApiService;
+import com.yojulab.study_springboot.service.sample.ApiService;
 
 @Controller
 @RequestMapping("/consult")

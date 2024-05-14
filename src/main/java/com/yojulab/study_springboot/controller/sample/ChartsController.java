@@ -1,4 +1,4 @@
-package com.yojulab.study_springboot.controller;
+package com.yojulab.study_springboot.controller.sample;
 
 import java.util.ArrayList;
 import java.util.Arrays;

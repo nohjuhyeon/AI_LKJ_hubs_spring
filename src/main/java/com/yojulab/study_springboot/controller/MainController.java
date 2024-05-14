@@ -6,8 +6,17 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yojulab.study_springboot.service.InquiryService;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MainController {
     @Value("${remote.server.url}")
     private String remoteServerUrl;
+
+    @Autowired
+    InquiryService inquiryService;
 
     @GetMapping({ "/", "/home", "/main" })
     public ModelAndView main(ModelAndView modelAndView) {
@@ -113,9 +125,31 @@ public class MainController {
     }
 
     @GetMapping({"/one_on_one_CS_main"})   
-    public ModelAndView CS_main(ModelAndView modelAndView){
+    public ModelAndView CS_main(ModelAndView modelAndView, @RequestParam Map<String, Object> dataMap){
+        // InquiryService를 통해 모든 문의 조회
+        List<Map<String, Object>> InquiryList = inquiryService.getAllInquiries(dataMap);
+
+        // View의 경로 설정
         String viewName = "/WEB-INF/views/consult/one_on_one_CS_main.jsp";
         modelAndView.setViewName(viewName);
+
+        // View에 전달할 데이터 설정
+        modelAndView.addObject("InquiryList", InquiryList);
+        modelAndView.addObject("dataMap", dataMap);
+        return modelAndView;
+    }
+
+    @PostMapping({"/one_on_one_CS_main"})   
+    public ModelAndView CS_main_post(ModelAndView modelAndView, @RequestParam Map<String, Object> dataMap){
+        // InquiryService를 통해 모든 문의 조회
+        List<Map<String, Object>> InquiryList = inquiryService.getAllInquiries(dataMap);
+        
+        String viewName = "/WEB-INF/views/consult/one_on_one_CS_main.jsp";
+        modelAndView.setViewName(viewName);
+
+        // View에 전달할 데이터 설정
+        modelAndView.addObject("InquiryList", InquiryList);
+        modelAndView.addObject("dataMap", dataMap);
         return modelAndView;
     }
 

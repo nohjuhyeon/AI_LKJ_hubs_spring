@@ -23,88 +23,95 @@
     <%@ include file="/WEB-INF/views/templates/header.jsp" %>
 
     <h1 class="mt-5 mb-4 text-center">1대1 문의</h1>
-
-    <div class="container my-3">
-        <table class="table">
-            <thead class="table-light rounded-corners">
-                <tr>
-                    <th colspan="3">
-                        <div class="text-end">
-                            <a href="/one_on_one_CS_write" class="btn btn-primary">글 작성</a>
-                        </div>
-                    </th>
-                </tr>
-            </thead>
-            <thead class="table-primary rounded-corners">
-                <tr>
-                    <th>제목</th>
-                    <th>작성자</th>
-                    <th>작성날짜</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                    <td class="collapsible" value=""></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="3" style="padding:0;">
-                        <div class="content">
-                            <div class="form-container">
-                                <div></div>
+    <form action="/one_on_one_CS_main" method="post" class="one_on_one_CS_main">
+        <div class="container my-3">
+            <table class="table">
+                <thead class="table-light rounded-corners">
+                    <tr>
+                        <th colspan="3">
+                            <div class="text-end">
+                                <a href="/one_on_one_CS_write" class="btn btn-primary">글 작성</a>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3">등록된 문의가 없습니다.</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <form>
-        <div>
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                        <button type="submit" class="page-link"
-                            formaction="">
-                            맨 처음
-                        </button>
-                    </li>
-                    <li class="page-item">
-                        <button type="submit" class="page-link"
-                            formaction="">
-                            이전
-                        </button>
-                    </li>
-                    <li class="page-item">
-                        <button type="submit" class="page-link" formaction="">
-                        
-                        </button>
-                    </li>
-    
-    
-                    <li class="page-item">
-                        <button type="submit" class="page-link"
-                            formaction="">
-                            다음
-                        </button>
-                    </li>
-                    <li class="page-item">
-                        <button type="submit" class="page-link"
-                            formaction="">
-                            맨 끝
-                        </button>
-                    </li>
-    
-                </ul>
-            </nav>
+                        </th>
+                    </tr>
+                </thead>
+                <thead class="table-primary rounded-corners">
+                    <tr>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성날짜</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="Inquiry" items="${InquiryList}">
+                        <tr>
+                            <td class="collapsible" value="${Inquiry.password}">${Inquiry.INQUIRY_TITLE}</td>
+                            <td>${Inquiry.INQUIRY_WRITER}</td>
+                            <td>${Inquiry.INQUIRY_DATETIME}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="padding:0;">
+                                <div class="content">
+                                    <div class="form-container">
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    
+                    <c:if test="${empty InquiryList}">
+                        <tr>
+                            <td colspan="3">등록된 문의가 없습니다.</td>
+                        </tr>
+                    </c:if>
+                </tbody>
+            </table>
         </div>
     </form>
+    
+        <form>
+            <div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <button type="submit" class="page-link"
+                                formaction="">
+                                맨 처음
+                            </button>
+                        </li>
+                        <li class="page-item">
+                            <button type="submit" class="page-link"
+                                formaction="">
+                                이전
+                            </button>
+                        </li>
+                        <li class="page-item">
+                            <button type="submit" class="page-link" formaction="">
+                            
+                            </button>
+                        </li>
+        
+        
+                        <li class="page-item">
+                            <button type="submit" class="page-link"
+                                formaction="">
+                                다음
+                            </button>
+                        </li>
+                        <li class="page-item">
+                            <button type="submit" class="page-link"
+                                formaction="">
+                                맨 끝
+                            </button>
+                        </li>
+        
+                    </ul>
+                </nav>
+            </div>
+        </form>
+   
+    
 
     <script>
         $(document).ready(function () {
