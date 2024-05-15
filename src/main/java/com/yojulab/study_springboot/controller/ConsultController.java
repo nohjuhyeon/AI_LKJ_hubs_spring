@@ -170,4 +170,7 @@ public class ConsultController {
         modelAndView.setViewName("/WEB-INF/views/consult/data_chart.jsp");
         return modelAndView;
     }
+
 }
+
+
