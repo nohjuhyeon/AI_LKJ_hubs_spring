@@ -35,4 +35,12 @@ public class PlanTripController {
         modelAndView.setViewName("/WEB-INF/views/plan_trip/reserve_dorm.jsp");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/reserve_tour", method = { RequestMethod.GET, RequestMethod.POST })
+    public ModelAndView showReserveTour(ModelAndView modelAndView) {
+        List<Map<String, Object>> reserveDormData = apiService.fetchReserveDorm();
+        modelAndView.addObject("reserveTourData", reserveDormData);
+        modelAndView.setViewName("/WEB-INF/views/plan_trip/reserve_tour.jsp");
+        return modelAndView;
+    }
 }
