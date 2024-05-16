@@ -63,4 +63,20 @@ public class InquiryService {
         result.put("InquiryList", sharedDao.getList(sqlMapId, dataMap)); // 표현된 레코드 정보
         return result;
     }
-}
+
+    public Object insertInquiry(Map dataMap) {
+        String password = (String) dataMap.get("INQUIRY_PASSWORD");
+        dataMap.put("INQUIRY_PASSWORD", password);
+        String sqlMapId = "Inquiry.insert";
+        String INQUIRY_ID = commonUtils.getUniqueSequence();
+        dataMap.put("INQUIRY_ID", INQUIRY_ID);
+        Object result = sharedDao.insert(sqlMapId, dataMap);
+        
+        return result;
+    }
+
+
+    }
+
+  
+

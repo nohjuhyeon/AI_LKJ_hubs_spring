@@ -51,7 +51,8 @@ public class SecurityConfiguration {
                 httpSecurity.logout(logout -> logout
                                 .logoutSuccessUrl("/main")
                                 .invalidateHttpSession(true)
-                                .deleteCookies("JSESSIONID"));
+                                // .deleteCookies("JSESSIONID")
+                                );
 
 
                 // 권한 거부 처리
