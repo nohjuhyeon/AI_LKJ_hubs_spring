@@ -63,4 +63,15 @@ public class ApiService {
             return Collections.emptyList();
         }
     }
+
+    public List<Map<String, Object>> fetchAttractions() {
+        String url = "http://localhost:8000/event_api/Attraction_search_info";
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        try {
+            return mapper.readValue(response.getBody(), List.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
 }
