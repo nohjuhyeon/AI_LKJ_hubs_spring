@@ -1,6 +1,7 @@
 package com.yojulab.study_springboot.service;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
@@ -27,4 +28,50 @@ public class ApiService {
         }
     }
 
+    public List<Map<String, Object>> fetchReserveTransferTotal() {
+        String url = "http://localhost:8000/plan_trip_api/Reserve_transfer_total";
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        try {
+            return mapper.readValue(response.getBody(), List.class);
+        } catch (JsonProcessingException e) {
+            // Log error and return empty list or rethrow as a custom checked/unchecked exception
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
+    public List<Map<String, Object>> fetchReserveDorm() {
+        String url = "http://localhost:8000/plan_trip_api/Reserve_dorm";
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        try {
+            return mapper.readValue(response.getBody(), List.class);
+        } catch (JsonProcessingException e) {
+            // Log error and return empty list or rethrow as a custom checked/unchecked exception
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
+    public List<Map<String, Object>> fetchReserveTour() {
+        String url = "http://localhost:8000/plan_trip_api/Reserve_tour";
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        try {
+            return mapper.readValue(response.getBody(), List.class);
+        } catch (JsonProcessingException e) {
+            // Log error and return empty list or rethrow as a custom checked/unchecked exception
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
+    public List<Map<String, Object>> fetchAttractions() {
+        String url = "http://localhost:8000/event_api/Attraction_search_info";
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        try {
+            return mapper.readValue(response.getBody(), List.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
 }
