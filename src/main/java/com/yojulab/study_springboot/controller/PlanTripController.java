@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.yojulab.study_springboot.service.ApiService;
+import com.yojulab.study_springboot.service.TourApiService;
 
 @Controller
 @RequestMapping("/plan_trip")
 public class PlanTripController {
     @Autowired
-    private Gson gson;
-    @Autowired
     private ApiService apiService;
+    @Autowired
+    private TourApiService tourApiService;
 
     @RequestMapping(value = "/reserve_transfer", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView showReserveTransferTotal(ModelAndView modelAndView) {
@@ -28,19 +28,11 @@ public class PlanTripController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/reserve_dorm", method = { RequestMethod.GET, RequestMethod.POST })
-    public ModelAndView showReserveDorm(ModelAndView modelAndView) {
-        List<Map<String, Object>> reserveDormData = apiService.fetchReserveDorm();
-        modelAndView.addObject("reserveDormData", reserveDormData);
+    @RequestMapping(value = "/reserve_dorm", method = RequestMethod.GET)
+    public ModelAndView reserveDorm(ModelAndView modelAndView) {
+        List<TourApiService.PlaceDetail> details = tourApiService.getDetails();
+        modelAndView.addObject("details", details);
         modelAndView.setViewName("/WEB-INF/views/plan_trip/reserve_dorm.jsp");
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/reserve_tour", method = { RequestMethod.GET, RequestMethod.POST })
-    public ModelAndView showReserveTour(ModelAndView modelAndView) {
-        List<Map<String, Object>> reserveDormData = apiService.fetchReserveDorm();
-        modelAndView.addObject("reserveTourData", reserveDormData);
-        modelAndView.setViewName("/WEB-INF/views/plan_trip/reserve_tour.jsp");
         return modelAndView;
     }
 }
