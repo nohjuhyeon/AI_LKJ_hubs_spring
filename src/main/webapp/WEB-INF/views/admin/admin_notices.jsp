@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
+<%@ page import="com.yojulab.study_springboot.utils.Paginations" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +23,7 @@
 <body>
 <%@ include file="/WEB-INF/views/templates/header.jsp" %>
 <h1 class="mt-5 mb-4">공지 관리(관리자 페이지)</h1>
-<div ckass="container my-3">
+<div class="container my-3"> <!-- 수정된 부분: 'ckass'를 'class'로 수정 -->
     <table class="table">
         <thead class="table-light">
             <tr>
@@ -40,59 +42,53 @@
                 <th>작성날짜</th>
             </tr>
         </thead>
-        {% for notice in notices %}
+        <tbody>
+            <% int rowNum=1; List<HashMap<String, Object>> NoticeList = (List
+            <HashMap<String, Object>>)
+                request.getAttribute("NoticeList");
+                if(NoticeList != null && !NoticeList.isEmpty()) {
+                for(HashMap<String, Object> Notices : NoticeList) {
+                    %>
         <tr>
-            <td>{{ loop.index + (pagination.current_page - 1) * pagination.records_per_page }}</td>
+            <td><%= rowNum++ %></td>
             <td>
-                <a href="">{{ notice.title }}</a>
+                <a href="/admin_notice_content/<%= Notices.get("NOTICE_ID") %>"><%= (Notices.get("NOTICE_TITLE") != null) ? Notices.get("NOTICE_TITLE").toString() : "" %></a>
             </td>
-            <td>{{ notice.writer }}</td>
-            <td>{{ notice.date }}</td>
+            <td> <%= (Notices.get("WRITER") !=null) ? Notices.get("WRITER").toString() : "" %></td>
+            <td><%= (Notices.get("DATETIME") !=null) ? Notices.get("DATETIME").toString() : "" %></td>
         </tr>
-        {% endfor %}
+            <% } } %> <!-- 수정된 부분: for 루프와 if 문이 종료되도록 수정 -->
         </tbody>
     </table>
 </div>
 <form>
     <div>
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-                <li class="page-item {% if not pagination.has_previous_block %}disabled{% endif %}">
-                    <button type="submit" class="page-link"
-                        formaction="/admin/notice/{{pagination.first_page}}">
-                        맨 처음
-                    </button>
-                </li>
-                <li class="page-item {% if not pagination.has_previous_page %}disabled{% endif %}">
-                    <button type="submit" class="page-link"
-                        formaction="/admin/notice/{{pagination.previous_page}}">
-                        이전
-                    </button>
-                </li>
-
-                {% for page_num in pagination.current_page_range %}
-                <li class="page-item {% if page_num == pagination.current_page %}active{% endif %}">
-                    <button type="submit" class="page-link" formaction="/admin/notice/{{page_num}}">
-                        {{page_num}}
-                    </button>
-                </li>
-                {% endfor %}
-
-                <li class="page-item {% if not pagination.has_next_page %}disabled{% endif %}">
-                    <button type="submit" class="page-link"
-                        formaction="/admin/notice/{{pagination.next_page}}">
-                        다음
-                    </button>
-                </li>
-                <li class="page-item {% if not pagination.has_next_block %}disabled{% endif %}">
-                    <button type="submit" class="page-link"
-                        formaction="/admin/notice/{{pagination.last_page}}">
-                        맨 끝
-                    </button>
-                </li>
-
-            </ul>
-        </nav>
+        <% Paginations paginations=(Paginations) (Paginations) request.getAttribute("paginations"); %>
+            <nav class="row justify-content-between" aria-label="Page navigation">
+                <div class="col-8">Total Count : <%= paginations.getTotalCount() %>
+                </div>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item <%= paginations.isFirstPage() ? " disabled" : "" %>">
+                        <button class="page-link" type="submit" name="currentPage"
+                            value="<%= paginations.getPreviousPage() %>"
+                            formaction="/admin_notices">Previous</button>
+                    </li>
+                    <% for(int i=paginations.getBlockStart(); i <=paginations.getBlockEnd();
+                        i++) { %>
+                        <li class="page-item <%= paginations.getCurrentPage() == i ? "active" : "" %>">
+                            <button class="page-link" type="submit" name="currentPage"
+                                value="<%= i %>" formaction="/admin_notices">
+                                <%= i %>
+                            </button>
+                        </li>
+                        <% } %>
+                            <li class="page-item <%= paginations.isLastPage() ? " disabled" : "" %>">
+                                <button class="page-link" type="submit" name="currentPage"
+                                    value="<%= paginations.getNextPage() %>"
+                                    formaction="/admin_notices">Next</button>
+                            </li>
+                </ul>
+            </nav>
     </div>
 </form>
 <%@ include file="/WEB-INF/views/templates/footer.jsp" %>

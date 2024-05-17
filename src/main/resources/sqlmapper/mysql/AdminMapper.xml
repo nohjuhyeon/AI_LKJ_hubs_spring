@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Notices">
+        <select id="selectByNotice" parameterType="Map" resultType="Map">
+        SELECT NOTICE.NOTICE_ID, NOTICE.USER_ID, NOTICE.NOTICE_TITLE, NOTICE.WRITER, DATE_FORMAT(NOTICE.DATETIME, '%Y-%m-%d %H:%i:%s') AS DATETIME, NOTICE.CONTENT, NOTICE_AUTH.UNIQUE_ID 
+        FROM NOTICE
+                left join NOTICE_AUTH
+        ON NOTICE.NOTICE_ID  = NOTICE_AUTH.NOTICE_ID
+        ORDER BY NOTICE.DATETIME  DESC;
+        ;
+        </select>
+
+        <!-- 입력 -->
+        <insert id="insert" parameterType="Map">
+        insert into NOTICE 
+        (NOTICE_ID, USER_ID, NOTICE_TITLE, WRITER, DATETIME, CONTENT)
+        values
+        (#{NOTICE_ID},#{USER_ID}, #{NOTICE_TITLE}, #{WRITER}, #{DATETIME}, #{CONTENT})
+        ;
+        </insert>
+
+        <!-- total count -->
+        <select id="selectTotal" parameterType="Map" resultType="int">
+        select count(*) as count
+        from NOTICE
+              <if test="search != null and search != ''">
+		where ${searchType} regexp #{search}
+	     </if>  
+        ;
+        </select>
+
+        <!-- 검색 with pagination -->
+        <select id="selectSearchWithPagination" parameterType="Map" resultType="Map">
+        SELECT NOTICE_ID, USER_ID, NOTICE_TITLE, WRITER, DATE_FORMAT(DATETIME, '%Y-%m-%d') AS DATETIME, CONTENT
+        FROM NOTICE
+        where 1 = 1
+		<if test="search != null and search != ''">
+		and ${searchType} regexp #{search}
+		</if>
+        limit #{pageBegin}, #{pageScale}
+        ;
+	</select>
+
+        <!-- objectId  -->
+        <select id="selectByNoticeId" parameterType="String" resultType="Map">
+        SELECT NOTICE_TITLE, WRITER, DATE_FORMAT(DATETIME, '%Y-%m-%d') AS DATETIME, CONTENT
+        FROM NOTICE
+        WHERE NOTICE_ID = #{NOTICE_ID}
+       </select>
+</mapper>
