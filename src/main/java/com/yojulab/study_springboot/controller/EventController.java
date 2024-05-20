@@ -75,18 +75,6 @@ public class EventController {
                 }
             }
 
-            // Filter by season unless 'total_season' is selected
-            if (!"total_season".equals(season)) {
-                List<String> seasons = Stream.of(season_01, season_02, season_03, season_04)
-                                        .filter(Objects::nonNull)
-                                        .collect(Collectors.toList());
-                if (!seasons.isEmpty()) {
-                    attractions = attractions.stream()
-                                        .filter(attraction -> seasons.contains(attraction.get("season")))
-                                        .collect(Collectors.toList());
-                }
-            }
-
             // Filter by region unless 'total_region' is selected
             if (!"total_region".equals(region)) {
                 List<String> regions = Stream.of(region_01, region_02, region_03, region_04, region_05, region_06, region_07, region_08, region_09, region_10, region_11, region_12, region_13, region_14, region_15, region_16, region_17)
