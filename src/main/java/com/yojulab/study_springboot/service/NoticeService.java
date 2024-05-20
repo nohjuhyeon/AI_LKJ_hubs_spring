@@ -1,7 +1,9 @@
 package com.yojulab.study_springboot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.Authentication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,9 +41,14 @@ public class NoticeService {
     }
 
     public Object insert(Map dataMap) {
+        // 현재 사용자의 인증 객체를 가져옴
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 사용자의 ID를 가져옴
+String USER_ID = authentication.getName(); // Spring Security에서는 사용자 ID가 인증 객체의 이름으로 저장됨
         String sqlMapId = "Notices.insert";
         String NOTICE_ID = commonUtils.getUniqueSequence();
         dataMap.put("NOTICE_ID", NOTICE_ID);
+        dataMap.put("USER_ID", USER_ID); 
         Object result = sharedDao.insert(sqlMapId, dataMap);
         
         return result;

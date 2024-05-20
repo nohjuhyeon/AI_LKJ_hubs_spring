@@ -147,6 +147,26 @@ public class AdminController  {
         return modelAndView;
     }
 
+    @PostMapping("/admin_notice_write")   
+    public ModelAndView admin_notice_write_insert(ModelAndView modelAndView, @RequestParam Map<String, Object> dataMap){
+        // 공지사항 추가를 처리하는 서비스 호출
+        Object result = noticeService.insert(dataMap);
+
+        // 추가된 공지사항을 포함한 전체 게시물 목록을 가져옴
+        Map<String, Object> NoticesList = noticeService.selectSearchWithPagination(dataMap);
+        String viewName = "/WEB-INF/views/admin/admin_notice_write.jsp";
+        modelAndView.setViewName(viewName);
+
+        modelAndView.addObject("NoticesList", NoticesList.get("NoticesList"));
+        modelAndView.addObject("paginations", NoticesList.get("paginations"));
+        modelAndView.addObject("dataMap", dataMap);
+        modelAndView.addObject("result", result);
+
+        return modelAndView;
+
+    }
+
+
     @GetMapping({"/admin_notice_content", "/admin_notice_content/{NOTICE_ID}"})   
     public ModelAndView admin_notice_content(ModelAndView modelAndView, @PathVariable(value = "NOTICE_ID", required = false) String NOTICE_ID, @RequestParam Map<String, Object> dataMap){
         String viewName = "/WEB-INF/views/admin/admin_notice_content.jsp";
