@@ -116,6 +116,30 @@ public class AdminController  {
         return modelAndView;
     }
 
+    @PostMapping("/admin_lists/update/{NOTICE_ID}")
+    public ModelAndView noticesUpdate(ModelAndView modelAndView, @PathVariable String NOTICE_ID, @RequestParam HashMap<String, Object> dataMap) {
+        if ( dataMap.containsKey("btn_type")){
+            if (dataMap.get("btn_type").equals("update")){
+                noticeService.update(dataMap); 
+            }
+        }
+
+        Map<String, Object> result = noticeService.updateAndPagination(dataMap);
+
+        String viewName = "/WEB-INF/views/admin/admin_notices.jsp";
+        modelAndView.setViewName(viewName);
+
+        Paginations paginations = (Paginations) result.get("paginations");
+        if (paginations != null) {
+        modelAndView.addObject("paginations", paginations); // Paginations 객체 추가
+        }
+        modelAndView.addObject("NoticeList", result.get("NoticeList"));
+        modelAndView.addObject("dataMap", dataMap);
+
+        return modelAndView;
+
+    }
+
     @GetMapping("/admin_notice_write")   
     public ModelAndView admin_notice_write(ModelAndView modelAndView){
         String viewName = "/WEB-INF/views/admin/admin_notice_write.jsp";

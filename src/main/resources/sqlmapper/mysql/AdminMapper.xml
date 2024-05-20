@@ -10,6 +10,12 @@
         ;
         </select>
 
+        <select id="selectByOneUID" parameterType="Map" resultType="Map">
+        SELECT * 
+		FROM NOTICE 
+		WHERE NOTICE_ID=#{NOTICE_ID};
+        </select>
+
         <!-- 입력 -->
         <insert id="insert" parameterType="Map">
         insert into NOTICE 

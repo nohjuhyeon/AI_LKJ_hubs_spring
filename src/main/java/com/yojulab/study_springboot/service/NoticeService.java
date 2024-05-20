@@ -46,6 +46,13 @@ public class NoticeService {
         
         return result;
     }
+
+    public Object read(HashMap<String, Object> dataMap){
+        String sqlMapId = "Notices.selectByOneUID";
+        Object one = sharedDao.getOne(sqlMapId, dataMap);
+        return one;
+    }
+
         
     public Object selectTotal(Map dataMap) {
         String sqlMapId = "Notices.selectTotal";
@@ -92,6 +99,7 @@ public class NoticeService {
         return count;
     }
 
+    // 삭제 및 페이지네이션
     public Map selectSearchWithPaginationAndDeletes(Map dataMap) {
         if (dataMap.get("deleteIds") != null) {
             Object count = this.deleteWithIn(dataMap);
@@ -119,5 +127,41 @@ public class NoticeService {
         result.put("NoticeList", NoticeList); // 표현된 레코드 정보
         return result;
     }
-    
+
+    // 업데이트 메서드
+    public Object update(Map dataMap) {
+        String sqlMapId = "Notices.update";
+        Object result = sharedDao.update(sqlMapId, dataMap);
+        return result;
+    }
+
+    // 업데이트 및 페이지네이션 구현
+    public Map updateAndPagination(Map dataMap) {
+        if (dataMap.get("NOTICE_ID") != null) {
+            Object count = this.update(dataMap);
+        }
+
+        // 페이지 형성을 위한 계산
+        int totalCount = (int) this.selectTotal(dataMap);
+
+        int currentPage = 1;
+        if (dataMap.get("currentPage") != null) {
+            currentPage = Integer.parseInt((String) dataMap.get("currentPage"));
+        }
+
+        Paginations paginations = new Paginations(totalCount, currentPage);
+        Map<String, Object> result = new HashMap<>();
+        result.put("paginations", paginations); // 페이지에 대한 정보
+
+        // 페이지네이션 관련 파라미터 설정
+        dataMap.put("pageScale", paginations.getPageScale());
+        dataMap.put("pageBegin", paginations.getPageBegin());
+
+        // 공지사항 목록 가져오기
+        String sqlMapId = "Notices.selectSearchWithPagination";
+        List<Map<String, Object>> NoticeList = (List<Map<String, Object>>) sharedDao.getList(sqlMapId, dataMap);
+        result.put("NoticeList", NoticeList); // 표현된 레코드 정보
+
+        return result;
+}
 }

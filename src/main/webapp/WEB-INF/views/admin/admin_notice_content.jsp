@@ -84,11 +84,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <a href="/admin_notices/admin_lists" role="button" class="btn btn-primary me-2">취소</a>
-                                <button type="submit" class="btn btn-success me-2" id="btn-save">수정</button>
+                                <button type="submit" formaction="/admin_notices/admin_lists/update/{NOTICE_ID}" class="btn btn-success me-2" id="btn-save" formmethod="post">수정</button>
+                                <input type="hidden" class="form-check-input" id="NOTICE_ID" name="NOTICE_ID" value="<%= noticeContent.get("NOTICE_ID") %>">
                             </div>
                             <div class="col-md-6 text-end">
                                 <button type="submit" formaction="/admin_notices/admin_lists/delete" formmethod="post" class="btn btn-danger me-2" id="btn-delete">삭제</button>
-                                
                                 <input type="hidden" id="deleteIds" name="deleteIds" value= "<%= noticeContent.get("NOTICE_ID") %>">
                                 
                             </div>
@@ -103,6 +103,20 @@
     <%@ include file="/WEB-INF/views/templates/footer.jsp" %>
 
     <script>
+        $(document).ready(function() {
+          $('#btn-save').click(function(event) {
+            event.preventDefault(); // 기본 폼 제출 동작 막기
+        
+            // 삭제 확인 alert 창 띄우기
+            if (confirm("정말 수정하시겠습니까?")) {
+              // 삭제 확인 후 폼 제출
+              $('form').attr('action', '/admin_notices/admin_lists/update/{NOTICE_ID}');
+              $('form').attr('method', 'post');
+              $('form').submit();
+            }
+          });
+        });
+
         $(document).ready(function() {
           $('#btn-delete').click(function(event) {
             event.preventDefault(); // 기본 폼 제출 동작 막기
