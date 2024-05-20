@@ -29,9 +29,9 @@ public class SecurityConfiguration {
                         // .requestMatchers("/carInfor/map/*").hasRole("USER")
 
                         
-                        .requestMatchers("/admin_main*").hasRole("ADMIN")
-                        .requestMatchers("/admin_users*").hasRole("ADMIN")
-                        .requestMatchers("/admin_notices*").hasRole("ADMIN")
+                        .requestMatchers("/admin_notices/admin_main*").hasRole("ADMIN")
+                        // .requestMatchers("/admin_notices/admin_users*").hasRole("ADMIN")
+                        .requestMatchers("/admin_notices/list_pagination*").hasRole("ADMIN")
                         .requestMatchers("/mypageMain*").hasRole("MEMBER")
                         .requestMatchers("/mypageInfo*").hasRole("MEMBER")
                         .requestMatchers("/mypageInsert_plan*").hasRole("MEMBER")

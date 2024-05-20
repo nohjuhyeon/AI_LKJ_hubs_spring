@@ -15,7 +15,7 @@
         insert into NOTICE 
         (NOTICE_ID, USER_ID, NOTICE_TITLE, WRITER, DATETIME, CONTENT)
         values
-        (#{NOTICE_ID},#{USER_ID}, #{NOTICE_TITLE}, #{WRITER}, #{DATETIME}, #{CONTENT})
+        (#{NOTICE_ID},#{USER_ID}, #{NOTICE_TITLE}, #{WRITER}, NOW(), #{CONTENT})
         ;
         </insert>
 
@@ -37,6 +37,7 @@
 		<if test="search != null and search != ''">
 		and ${searchType} regexp #{search}
 		</if>
+         ORDER BY DATETIME DESC
         limit #{pageBegin}, #{pageScale}
         ;
 	</select>
@@ -47,4 +48,17 @@
         FROM NOTICE
         WHERE NOTICE_ID = #{NOTICE_ID}
        </select>
+
+        <!-- 수정 -->
+        <update id="update" parameterType="Map">
+	UPDATE NOTICE
+	SET NOTICE_TITLE = #{NOTICE_TITLE}, WRITER = #{WRITER}, DATETIME = NOW(), CONTENT = #{CONTENT}
+	WHERE NOTICE_ID=#{NOTICE_ID};
+       </update>
+
+        <!-- 삭제 -->
+	<delete id="delete" parameterType="Map">
+		DELETE FROM NOTICE
+		WHERE NOTICE_ID = #{NOTICE_ID};
+    </delete>
 </mapper>

@@ -29,7 +29,7 @@
             <tr>
                 <th colspan="4">
                     <div class="text-end">
-                        <a href="/admin_notice_write" class="btn btn-primary">글 작성</a>
+                        <a href="/admin_notices/admin_notice_write" class="btn btn-primary">글 작성</a>
                     </div>
                 </th>
             </tr>
@@ -52,7 +52,7 @@
         <tr>
             <td><%= rowNum++ %></td>
             <td>
-                <a href="/admin_notice_content/<%= Notices.get("NOTICE_ID") %>"><%= (Notices.get("NOTICE_TITLE") != null) ? Notices.get("NOTICE_TITLE").toString() : "" %></a>
+                <a href="/admin_notices/admin_notice_content/<%= Notices.get("NOTICE_ID") %>"><%= (Notices.get("NOTICE_TITLE") != null) ? Notices.get("NOTICE_TITLE").toString() : "" %></a>
             </td>
             <td> <%= (Notices.get("WRITER") !=null) ? Notices.get("WRITER").toString() : "" %></td>
             <td><%= (Notices.get("DATETIME") !=null) ? Notices.get("DATETIME").toString() : "" %></td>
@@ -71,13 +71,13 @@
                     <li class="page-item <%= paginations.isFirstPage() ? " disabled" : "" %>">
                         <button class="page-link" type="submit" name="currentPage"
                             value="<%= paginations.getPreviousPage() %>"
-                            formaction="/admin_notices">Previous</button>
+                            formaction="/admin_notices/admin_lists">Previous</button>
                     </li>
                     <% for(int i=paginations.getBlockStart(); i <=paginations.getBlockEnd();
                         i++) { %>
                         <li class="page-item <%= paginations.getCurrentPage() == i ? "active" : "" %>">
                             <button class="page-link" type="submit" name="currentPage"
-                                value="<%= i %>" formaction="/admin_notices">
+                                value="<%= i %>" formaction="/admin_notices/admin_lists">
                                 <%= i %>
                             </button>
                         </li>
@@ -85,7 +85,7 @@
                             <li class="page-item <%= paginations.isLastPage() ? " disabled" : "" %>">
                                 <button class="page-link" type="submit" name="currentPage"
                                     value="<%= paginations.getNextPage() %>"
-                                    formaction="/admin_notices">Next</button>
+                                    formaction="/admin_notices/admin_lists">Next</button>
                             </li>
                 </ul>
             </nav>

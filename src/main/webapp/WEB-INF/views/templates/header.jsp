@@ -18,7 +18,7 @@
                     <sec:authorize access="isAnonymous()">
                         <li class="nav-item"><a href="/loginForm" class="nav-link">로그인</a></li>
                         <li class="nav-item"><a href="/mypageMain" class="nav-link">마이페이지</a></li>  
-                        <li class="nav-item"><a href="/admin_main" class="nav-link">관리자</a></li>
+                        <li class="nav-item"><a href="/admin_notices/admin_main" class="nav-link">관리자</a></li>
                     </sec:authorize>
                 
                     <!-- 로그인 후 -->
@@ -30,7 +30,7 @@
                             <a class="nav-link" href="#">Name : ${userDetailsBean.memberName}</a>
                         </li>
                         <li class="nav-item"><a href="/mypageMain" class="nav-link">마이페이지</a></li>  
-                        <li class="nav-item"><a href="/admin_main" class="nav-link">관리자</a></li>
+                        <li class="nav-item"><a href="/admin_notices/admin_main" class="nav-link">관리자</a></li>
                         <li>
                             <button class="nav-link" onclick="location.href='/logoutForm'">Logout</button>
                         </li>
