@@ -44,7 +44,7 @@ public class NoticeService {
         // 현재 사용자의 인증 객체를 가져옴
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         // 현재 사용자의 ID를 가져옴
-String USER_ID = authentication.getName(); // Spring Security에서는 사용자 ID가 인증 객체의 이름으로 저장됨
+        String USER_ID = authentication.getName(); // Spring Security에서는 사용자 ID가 인증 객체의 이름으로 저장됨
         String sqlMapId = "Notices.insert";
         String NOTICE_ID = commonUtils.getUniqueSequence();
         dataMap.put("NOTICE_ID", NOTICE_ID);
