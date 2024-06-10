@@ -91,7 +91,8 @@ public class AdminController  {
     }
 
     @PostMapping("/admin_lists/delete")
-    public ModelAndView deletePagination(ModelAndView modelAndView, @RequestParam HashMap<String, Object> dataMap, @RequestParam(name = "deleteIds", required = false) ArrayList<String> deleteIds) {
+    public ModelAndView deletePagination(ModelAndView modelAndView, @RequestParam HashMap<String, Object> dataMap
+    , @RequestParam(name = "deleteIds", required = false) ArrayList<String> deleteIds) {
         if ( dataMap.containsKey("btn_type") ) {
             // 삭제 버튼을 눌렀을 때
             if (deleteIds != null && !deleteIds.isEmpty()){
