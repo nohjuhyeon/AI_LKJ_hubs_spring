@@ -8,7 +8,7 @@
 |김명준|Data Analyst|
 |문석천|Data Analyst|
 |장영지|Data Analyst|
-|김경하|Data Engineer|
+|김경하|Data Engineer|  
 |서정민|Data Engineer|
 
 ## - 프로젝트 목표
