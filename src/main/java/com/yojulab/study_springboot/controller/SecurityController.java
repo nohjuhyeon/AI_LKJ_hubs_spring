@@ -23,8 +23,8 @@ public class SecurityController {
     private UsersService usersService;
 
 
-
-    @GetMapping({"/loginForm"})     // 로그인 폼 작성
+    // 로그인 폼 작성
+    @GetMapping({"/loginForm"})     
     public ModelAndView loginForm(ModelAndView modelAndView){
         String viewName = "/WEB-INF/views/security/loginForm.jsp";
         modelAndView.setViewName(viewName);
@@ -38,8 +38,8 @@ public class SecurityController {
         return modelAndView;
     }
 
-
-    @GetMapping({"/logoutForm"})     // 로그아웃 폼 작성
+    // 로그아웃 폼 작성
+    @GetMapping({"/logoutForm"})     
     public ModelAndView logoutForm(ModelAndView modelAndView){
         String viewName = "/WEB-INF/views/security/logoutForm.jsp";
         modelAndView.setViewName(viewName);
