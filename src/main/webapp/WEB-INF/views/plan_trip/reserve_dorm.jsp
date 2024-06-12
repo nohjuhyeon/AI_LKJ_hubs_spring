@@ -2,6 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.yojulab.study_springboot.service.TourApiService.PlaceDetail" %>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +25,6 @@
 </head>
 
 <body>
-    <%-- Include header --%>
     <%@ include file="/WEB-INF/views/templates/header.jsp" %>
 
     <div class="container mt-5 mb-5">
@@ -65,17 +66,19 @@
             %>
             <div class="row align-items-stretch mb-3" style="border: 1px solid #555; border-radius: 15px; background-color: #ffffff;">
                 <div class="col-md-3" style="border-right: 1px solid #555;">
-                    <img src="<%=detail.getFirstimage()%>" alt="Dorm Image" class="img-fluid" style="width: 100%; height: auto;">
+                    <!-- <img src="<%=detail.getFirstimage()%>" alt="Dorm Image" class="img-fluid" style="width: 100%; height: auto;"> -->
                 </div>
                 <div class="col-md-9 d-flex flex-column justify-content-center">
-                    <div class="mb-2" style="margin-top: -10px;"><%=detail.getTitle()%></div>
+                    <div class="mb-2" style="margin-top: -10px;"><%=detail.get(nameKor)%></div>
                     <div class="d-flex justify-content-between align-items-baseline mb-2">
-                        <h2><%=detail.getTitle()%></h2>
+                        <h2><%=detail.get(nameKor)%></h2>
                         <h2>가격 정보 없음</h2>
                     </div>
                     <div class="justify-content-between row">
-                        <div class="col-md-4" style="margin-top: 10px;"><%=detail.getAddr1()%></div>
-                        <button id="addButton<%=i%>" class="btn btn-primary col-md-3" value="<%=detail.getTitle()%>/<%=detail.getAddr1()%>/<%=detail.getTel()%>/<%=detail.getHomepage()%>/<%=i%>">가격 비교하기</button>
+                        <div class="col-md-4" style="margin-top: 10px;"><%=detail.get(city)%></div>
+                        <div class="col-md-4" style="margin-top: 10px;"><%=detail.get(district)%></div>
+                        <div class="col-md-4" style="margin-top: 10px;"><%=detail.get(neighborhood)%></div>
+                        <button id="addButton<%=i%>" class="btn btn-primary col-md-3" value="<%=detail.get(nameKor)%>/<%=detail.get(city)%>/<%=detail.get(district)%>/<%=detail.get(neighborhood)%>/<%=i%>">가격 비교하기</button>
                     </div>
                 </div>
             </div>
@@ -193,7 +196,7 @@
         });
     </script>
 
-    <%-- Include footer --%>
+    
     <%@ include file="/WEB-INF/views/templates/footer.jsp" %>
 </body>
 </html>

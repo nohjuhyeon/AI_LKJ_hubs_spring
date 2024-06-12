@@ -23,7 +23,7 @@
             </head>
 
             <body>
-                <%-- Include header --%>
+                
                 <%@ include file="/WEB-INF/views/templates/header.jsp" %>
             
                 <div class="container mt-5 mb-5">

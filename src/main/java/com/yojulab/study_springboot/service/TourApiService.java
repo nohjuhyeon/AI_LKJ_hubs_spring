@@ -12,34 +12,40 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.google.gson.JsonObject;
+
 @Service
 public class TourApiService {
-    private static final String SERVICE_KEY = "oF8cvDrrW27C3TgVpKW9ax9JcOFDDBL%2BwlraX%2BGs9W5qYdA5jb0UnPfKCqV7BtR%2F1lHnKsfXRYlB7JZLJumIeA%3D%3D";
+    @Value("${seoul.API.key}")
+    private String seoulApiKey;
+    @Value("${seoul.API.endpoint}")
+    private String seoulApiendpoint;
+    // private static final String SERVICE_KEY = "oF8cvDrrW27C3TgVpKW9ax9JcOFDDBL%2BwlraX%2BGs9W5qYdA5jb0UnPfKCqV7BtR%2F1lHnKsfXRYlB7JZLJumIeA%3D%3D";
+
+
+    // 숙박 시설 상세 정보
+    // public List<PlaceDetail> getDetails() {
+    //     List<Integer> contentIds = getAllContentIds(); // 모든 숙박 시설의 contentId 목록을 가져옴
+    //     List<PlaceDetail> details = new ArrayList<>();
+    //     for (int contentId : contentIds) {
+    //         PlaceDetail detailInfo = getDetailInfo(contentId); // 상세 정보를 가져옴
+    //         if (detailInfo != null) {
+    //             details.add(detailInfo); // 상세 정보를 리스트에 추가하여 반환
+    //         }
+    //     }
+    //     return details;
+    // }
 
     public List<PlaceDetail> getDetails() {
-        List<Integer> contentIds = getAllContentIds();
         List<PlaceDetail> details = new ArrayList<>();
-        for (int contentId : contentIds) {
-            PlaceDetail detailInfo = getDetailInfo(contentId);
-            if (detailInfo != null) {
-                details.add(detailInfo);
-            }
-        }
-        return details;
-    }
-
-    private List<Integer> getAllContentIds() {
-        List<Integer> contentIds = new ArrayList<>();
-        int numOfRows = 10; // 필요한 데이터 개수 설정
-        int pageNo = 1;
-        String urlString = String.format("https://apis.data.go.kr/B551011/KorService1/searchStay1?serviceKey=%s&numOfRows=%d&pageNo=%d&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=A", SERVICE_KEY, numOfRows, pageNo);
+        String urlString = String.format("http://openapi.seoul.go.kr:8088/%s/json/%s/1/5/",seoulApiKey, seoulApiendpoint);
 
         try {
-            System.out.println("Request URL: " + urlString); // 요청 URL 확인을 위한 로그 추가
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -47,92 +53,72 @@ public class TourApiService {
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             StringBuilder sb = new StringBuilder();
             String line;
-            while ((line = rd.readLine()) != null) {
+            while((line = rd.readLine()) != null) {
                 sb.append(line);
             }
             rd.close();
             conn.disconnect();
 
             JSONObject json = new JSONObject(sb.toString());
-            JSONArray items = json.getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray("item");
+            JSONArray items = json.getJSONObject(seoulApiendpoint).getJSONArray("row");
 
             for (int i = 0; i < items.length(); i++) {
                 JSONObject item = items.getJSONObject(i);
-                contentIds.add(item.getInt("contentid"));
-            }
 
+                String mainKey  = item.getString("MAIN_KEY");
+                String category1 = item.has("CATE1_NAME") ? item.getString("CATE1_NAME") : null;
+                String category2 = item.has("CATE2_NAME") ? item.getString("CATE2_NAME") : null;
+                String category3 = item.has("CATE3_NAME") ? item.getString("CATE3_NAME") : null; // 등급
+                String displayName = item.has("NM_DP") ? item.getString("NM_DP") : null; // 숙박명
+                String nameKor = item.has("NAME_KOR") ? item.getString("NAME_KOR") : null;  // 숙박명
+                String city = item.has("H_KOR_CITY") ? item.getString("H_KOR_CITY") : null; // 시
+                String district = item.has("H_KOR_GU") ? item.getString("H_KOR_GU") : null; // 구
+                String neighborhood = item.has("H_KOR_DONG") ? item.getString("H_KOR_DONG") : null; // 동 
+
+                PlaceDetail placeDetail = new PlaceDetail(mainKey, category1, category2, category3, displayName, nameKor, city, district, neighborhood);
+                details.add(placeDetail);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return contentIds;
+        return details;
     }
 
-    private PlaceDetail getDetailInfo(int contentId) {
-        String urlString = String.format("http://apis.data.go.kr/B551011/KorService1/detailCommon1?serviceKey=%s&contentTypeId=32&contentId=%d&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y", SERVICE_KEY, contentId);
 
-        try {
-            URL url = new URL(urlString);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-
-            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = rd.readLine()) != null) {
-                sb.append(line);
-            }
-            rd.close();
-            conn.disconnect();
-
-            // XML 파싱
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(new java.io.ByteArrayInputStream(sb.toString().getBytes("UTF-8")));
-            doc.getDocumentElement().normalize();
-
-            Element item = (Element) doc.getElementsByTagName("item").item(0);
-            String title = getTagValue("title", item);
-            String firstimage = getTagValue("firstimage", item);
-            String addr1 = getTagValue("addr1", item);
-            String tel = getTagValue("tel", item);
-            String homepage = getTagValue("homepage", item);
-
-            return new PlaceDetail(title, firstimage, addr1, tel, homepage);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    private String getTagValue(String tag, Element element) {
-        try {
-            return element.getElementsByTagName(tag).item(0).getTextContent();
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
+    // PlaceDetail 클래스 정의
     public static class PlaceDetail {
-        private String title;
-        private String firstimage;
-        private String addr1;
-        private String tel;
-        private String homepage;
-
-        public PlaceDetail(String title, String firstimage, String addr1, String tel, String homepage) {
-            this.title = title;
-            this.firstimage = firstimage;
-            this.addr1 = addr1;
-            this.tel = tel;
-            this.homepage = homepage;
+        private String mainKey;
+        private String category1;
+        private String category2;
+        private String category3;
+        private String displayName;
+        private String nameKor;
+        private String city;
+        private String district;
+        private String neighborhood;
+    
+        public PlaceDetail(String mainKey, String category1, String category2, String category3, String displayName, String nameKor, String city, String district, String neighborhood) {
+            this.mainKey = mainKey;
+            this.category1 = category1;
+            this.category2 = category2;
+            this.category3 = category3;
+            this.displayName = displayName;
+            this.nameKor = nameKor;
+            this.city = city;
+            this.district = district;
+            this.neighborhood = neighborhood;
         }
-
+    
         // Getters and Setters
-        public String getTitle() { return title; }
-        public String getFirstimage() { return firstimage; }
-        public String getAddr1() { return addr1; }
-        public String getTel() { return tel; }
-        public String getHomepage() { return homepage; }
+        public String getMainKey() { return mainKey; }
+        public String getCategory1() { return category1; }
+        public String getCategory2() { return category2; }
+        public String getCategory3() { return category3; }
+        public String getDisplayName() { return displayName; }
+        public String getNameKor() { return nameKor; }
+        public String getCity() { return city; }
+        public String getDistrict() { return district; }
+        public String getNeighborhood() { return neighborhood; }
     }
+    
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List, java.util.Map" %>
-<%@ include file="/WEB-INF/views/templates/header.jsp" %>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +17,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/main.css">
     <style>
         .selector_box {
             margin-top: 20px;
@@ -65,6 +67,7 @@
 </head>
 
 <body>
+    <%@ include file="/WEB-INF/views/templates/header.jsp" %>
     <div class="container">
         <form action="/plan_trip/reserve_transfer" method="get">
             <div class="row justify-content-center mt-5">
@@ -242,7 +245,8 @@
             button.addEventListener('click', deleteListItem);
         });
     </script>
-</body>
 
+    <%@ include file="/WEB-INF/views/templates/footer.jsp" %>
+</body>
 </html>
-<%@ include file="/WEB-INF/views/templates/footer.jsp" %>
+

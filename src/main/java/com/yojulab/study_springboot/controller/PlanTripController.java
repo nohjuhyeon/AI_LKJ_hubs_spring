@@ -11,12 +11,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yojulab.study_springboot.service.ApiService;
 import com.yojulab.study_springboot.service.TourApiService;
+import com.yojulab.study_springboot.service.TourApiService.PlaceDetail;
 
 @Controller
 @RequestMapping("/plan_trip")
 public class PlanTripController {
+
     @Autowired
     private ApiService apiService;
+
     @Autowired
     private TourApiService tourApiService;
 
@@ -28,7 +31,7 @@ public class PlanTripController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/reserve_dorm", method = RequestMethod.GET)
+    @RequestMapping(value = "/reserve_dorm")
     public ModelAndView reserveDorm(ModelAndView modelAndView) {
         List<TourApiService.PlaceDetail> details = tourApiService.getDetails();
         modelAndView.addObject("details", details);
