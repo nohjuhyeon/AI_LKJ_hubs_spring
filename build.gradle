@@ -39,6 +39,12 @@ dependencies {
 
     // Gson 라이브러리 추가
     implementation 'com.google.code.gson:gson:2.8.8'
+
+    // Apache POI 라이브러리 추가
+    /// Apache POI 라이브러리를 사용하면 엑셀 파일(.xls, .xlsx)을 읽고 쓸 수 있음
+    implementation 'org.apache.poi:poi:5.2.3'
+    implementation 'org.apache.poi:poi-ooxml:5.2.3'
+
 }
 
 tasks.named('test') {
