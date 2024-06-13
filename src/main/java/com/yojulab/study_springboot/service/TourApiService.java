@@ -25,22 +25,7 @@ public class TourApiService {
     private String seoulApiKey;
     @Value("${seoul.API.endpoint}")
     private String seoulApiendpoint;
-    // private static final String SERVICE_KEY = "oF8cvDrrW27C3TgVpKW9ax9JcOFDDBL%2BwlraX%2BGs9W5qYdA5jb0UnPfKCqV7BtR%2F1lHnKsfXRYlB7JZLJumIeA%3D%3D";
-
-
-    // 숙박 시설 상세 정보
-    // public List<PlaceDetail> getDetails() {
-    //     List<Integer> contentIds = getAllContentIds(); // 모든 숙박 시설의 contentId 목록을 가져옴
-    //     List<PlaceDetail> details = new ArrayList<>();
-    //     for (int contentId : contentIds) {
-    //         PlaceDetail detailInfo = getDetailInfo(contentId); // 상세 정보를 가져옴
-    //         if (detailInfo != null) {
-    //             details.add(detailInfo); // 상세 정보를 리스트에 추가하여 반환
-    //         }
-    //     }
-    //     return details;
-    // }
-
+    
     public List<PlaceDetail> getDetails() {
         List<PlaceDetail> details = new ArrayList<>();
         String urlString = String.format("http://openapi.seoul.go.kr:8088/%s/json/%s/1/5/",seoulApiKey, seoulApiendpoint);

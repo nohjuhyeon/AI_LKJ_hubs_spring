@@ -1,29 +1,25 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.yojulab.study_springboot.service.TourApiService.PlaceDetail" %>
-
-
+<%@ page import="com.yojulab.study_springboot.service.TourApiService" %>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserve Dorm</title>
-    <!-- Latest compiled and minified CSS -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/main.css">
+    <style>
+        .dorm-card { border: 1px solid #555; border-radius: 15px; background-color: #ffffff; margin-bottom: 15px; }
+        .dorm-image { width: 100%; height: auto; border-right: 1px solid #555; }
+        .dorm-info { margin-top: 10px; }
+        .dorm-title { margin-top: -10px; }
+        .dorm-price { margin-top: 5px; }
+        .dorm-button { margin-top: 15px; }
+    </style>
 </head>
-
 <body>
     <%@ include file="/WEB-INF/views/templates/header.jsp" %>
 
@@ -59,56 +55,33 @@
                 </div>
             </div>
             <%
-                List<PlaceDetail> details = (List<PlaceDetail>) request.getAttribute("details");
-                if (details != null && !details.isEmpty()) {
-                    for (int i = 0; i < details.size(); i++) {
-                        PlaceDetail detail = details.get(i);
+            List<TourApiService.PlaceDetail> details = (List<TourApiService.PlaceDetail>) request.getAttribute("details");
+            if (details != null && !details.isEmpty()) {
+                for (TourApiService.PlaceDetail detail : details) {
             %>
-            <div class="row align-items-stretch mb-3" style="border: 1px solid #555; border-radius: 15px; background-color: #ffffff;">
-                <div class="col-md-3" style="border-right: 1px solid #555;">
-                    <!-- <img src="<%=detail.getFirstimage()%>" alt="Dorm Image" class="img-fluid" style="width: 100%; height: auto;"> -->
-                </div>
+            <div class="row align-items-stretch dorm-card">
                 <div class="col-md-9 d-flex flex-column justify-content-center">
-                    <div class="mb-2" style="margin-top: -10px;"><%=detail.get(nameKor)%></div>
-                    <div class="d-flex justify-content-between align-items-baseline mb-2">
-                        <h2><%=detail.get(nameKor)%></h2>
+                    <div class="mb-2 dorm-title"><%= detail.getNameKor() %></div>
+                    <div class="d-flex justify-content-between align-items-baseline mb-2 dorm-price">
+                        <h2><%= detail.getNameKor() %></h2>
                         <h2>가격 정보 없음</h2>
                     </div>
-                    <div class="justify-content-between row">
-                        <div class="col-md-4" style="margin-top: 10px;"><%=detail.get(city)%></div>
-                        <div class="col-md-4" style="margin-top: 10px;"><%=detail.get(district)%></div>
-                        <div class="col-md-4" style="margin-top: 10px;"><%=detail.get(neighborhood)%></div>
-                        <button id="addButton<%=i%>" class="btn btn-primary col-md-3" value="<%=detail.get(nameKor)%>/<%=detail.get(city)%>/<%=detail.get(district)%>/<%=detail.get(neighborhood)%>/<%=i%>">가격 비교하기</button>
+                    <div class="justify-content-between row dorm-info">
+                        <div class="col-md-4"><%= detail.getCity() %></div>
+                        <div class="col-md-4"><%= detail.getDistrict() %></div>
+                        <div class="col-md-4"><%= detail.getNeighborhood() %></div>
+                        <button class="btn btn-primary col-md-3 dorm-button" value="<%= detail.getNameKor() %>/<%= detail.getCity() %>/<%= detail.getDistrict() %>/<%= detail.getNeighborhood() %>">가격 비교하기</button>
                     </div>
                 </div>
             </div>
-            <%
-                    }
-                } else {
-                    out.println("<p>No details available.</p>");
+        <%
                 }
-            %>
-            <div>
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <button type="submit" class="page-link">맨 처음</button>
-                        </li>
-                        <li class="page-item disabled">
-                            <button type="submit" class="page-link">이전</button>
-                        </li>
-                        <li class="page-item active">
-                            <button type="submit" class="page-link">1</button>
-                        </li>
-                        <li class="page-item disabled">
-                            <button type="submit" class="page-link">다음</button>
-                        </li>
-                        <li class="page-item disabled">
-                            <button type="submit" class="page-link">맨 끝</button>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            } else {
+        %>
+            <p class="text-center">No details available</p>
+        <%
+            }
+        %>
             <div class="row justify-content-end">
                 <div class="col-3 position-fixed top-40 end-0 mb-3 ms-3 ml-3 bd-mode-toggl" style="top: 30%; width: 20%">
                     <li class="list-group-item list-group-item-primary">가격 비교하기</li>
@@ -195,8 +168,6 @@
             });
         });
     </script>
-
-    
     <%@ include file="/WEB-INF/views/templates/footer.jsp" %>
 </body>
 </html>
