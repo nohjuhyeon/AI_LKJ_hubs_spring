@@ -19,7 +19,6 @@ import com.yojulab.study_springboot.service.TourApiService;
 import com.yojulab.study_springboot.service.TourApiService.PlaceDetail;
 
 @Controller
-@RequestMapping("/plan_trip")
 public class PlanTripController {
 
     @Autowired
