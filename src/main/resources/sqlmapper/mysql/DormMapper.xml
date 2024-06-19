@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Dorm">
+        <select id="selectByDorm" parameterType="Map" resultType="Map">
+        SELECT *
+        FROM RESERVE_DORM
+        WHERE id = #{id}
+        ;
+        </select>
+
+        <!-- 입력 -->
+        <insert id="insert" parameterType="Map">
+        insert into RESERVE_DORM 
+        (id, title, firstimage, addr1, tel, homepage)
+        values
+        (#{id},#{title}, #{firstimage}, #{addr1}, #{tel}, #{homepage})
+        ;
+        </insert>
+
+        <!-- total count -->
+        <select id="selectTotal" parameterType="Map" resultType="int">
+        select count(*) as count
+        from RESERVE_DORM
+              <if test="search != null and search != ''">
+		where ${searchType} regexp #{search}
+	     </if>  
+        ;
+        </select>
+
+        <!-- 검색 with pagination -->
+        <select id="selectSearchWithPagination" parameterType="Map" resultType="Map">
+        SELECT id, title, firstimage, addr1, tel, homepage
+        FROM RESERVE_DORM
+        where 1 = 1
+		<if test="search != null and search != ''">
+		and ${searchType} regexp #{search}
+		</if>
+        limit #{pageBegin}, #{pageScale}
+        ;
+	</select>
+
+</mapper>
