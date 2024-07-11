@@ -30,7 +30,7 @@
                     <h2 class="text-center" style="color: rgb(27, 177, 197); text-shadow: 1px 1px 1px #000;">PathFinder</h2>
                     <h5 class="text-center">AI가 만들어주는 나만의 여행 계획</h5>
             
-                    <form action="/plan_trip/reco_themes/" method="POST" class="mt-3 mb-3">
+                    <form action="/plan_trip/reco_themes/" method="GET" class="mt-3 mb-3">
                         <div class="row justify-content-center">
                             <div class="col-md-2">
                                 <select class="form-select" name="transfer" required>
